@@ -15,9 +15,14 @@ public class AudiosPlayer : MonoBehaviour
 
     [Header("Fire")]
 
+    
+
     private bool canShoot = true;
     [SerializeField] public float shootCooldown = 1f;
     [SerializeField] private float timeShoot = 0;
+
+    public int weaponType=1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +36,19 @@ public class AudiosPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canShoot){
-            Fire();
-        }else{
-              timeShoot+=Time.deltaTime;
-           }
-        if(timeShoot>shootCooldown){
-            canShoot=true;
+
+
+        if (weaponType==1){
+        FireGun();
         }
+        if (weaponType==3){
+            FireShootgun();
+        }
+        if(weaponType==2){
+            KnifeAudio();
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -84,13 +94,53 @@ public class AudiosPlayer : MonoBehaviour
 
     }
 
-    private void Fire(){
-            if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
+
+    public void FireGun(){
+                if(canShoot){
+             if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
         {
             soundManager.SeleccionAudio(0, 0.5f);
             canShoot = false;
             timeShoot = 0;
         }
-        
+        }else{
+              timeShoot+=Time.deltaTime;
+           }
+        if(timeShoot>shootCooldown){
+            canShoot=true;
+        }
     }
+
+    public void FireShootgun(){
+                        if(canShoot){
+             if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
+        {
+            soundManager.SeleccionAudio(4, 0.5f);
+            canShoot = false;
+            timeShoot = 0;
+        }
+        }else{
+              timeShoot+=Time.deltaTime;
+           }
+        if(timeShoot>shootCooldown){
+            canShoot=true;
+        }
+    }
+
+    public void KnifeAudio(){
+                                if(canShoot){
+             if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
+        {
+            soundManager.SeleccionAudio(5, 0.5f);
+            canShoot = false;
+            timeShoot = 0;
+        }
+        }else{
+              timeShoot+=Time.deltaTime;
+           }
+        if(timeShoot>shootCooldown){
+            canShoot=true;
+        }
+    }
+    
 }
