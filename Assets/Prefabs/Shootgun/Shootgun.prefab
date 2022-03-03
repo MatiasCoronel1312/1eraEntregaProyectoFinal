@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879718172829658403}
   m_Layer: 0
-  m_Name: ShootPoint
+  m_Name: ShootgunPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,13 +496,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5829449141012005919}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: 0.71, z: 0}
+  m_LocalRotation: {x: -0.29046515, y: 0.5988299, z: -0.28747705, w: 0.6887595}
+  m_LocalPosition: {x: 0.11001048, y: 0.7100002, z: -0.0000048162683}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8900305587207191097}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.2, y: 83.44, z: -48.163}
 --- !u!1 &8513859187771203891
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManagerPlayer : MonoBehaviour
+public class SoundManagerPlayer : MonoBehaviour 
 {
-    // Start is called before the first frame update
+    // el control de audios y efectos, tambien controla el volumen de cada efecto
     [SerializeField] private AudioClip [] audios;
     private AudioSource controlAudio;
 

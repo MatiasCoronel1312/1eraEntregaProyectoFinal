@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    
-     [SerializeField] GameObject[] weapons;
+    //con este controlo la funcion de cada arma, con variables del audioPlayer y el PlayerWeapon 
+    //con la tecla 1,2,y 3 se activa o desactiva la pistola ,el cuchillo y la escopeta
+    //mas adelante me gustaria agregar mas armas y obviamente sus funciones
+    [SerializeField] GameObject[] weapons;
 
-     public int typeWeapon=1;
+    public int typeWeapon = 1;
 
-     public AudiosPlayer audioWeapon;
+    public AudiosPlayer audioWeapon;
+
+    public PlayerWeaponController fireWeapon;
 
     void Start()
     {
@@ -19,44 +23,49 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            typeWeapon=1;
+            typeWeapon = 1;
         }
-                       if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            typeWeapon=2;
+            typeWeapon = 2;
         }
-                       if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            typeWeapon=3;
+            typeWeapon = 3;
         }
-        
+
         SwitchWeapon();
     }
 
-    public void SwitchWeapon(){
+    public void SwitchWeapon()
+    {
 
-        switch (typeWeapon){
+        switch (typeWeapon)
+        {
 
-        case 1:
-            enableWeapon(0, true);
-            enableWeapon(1, false);
-            enableWeapon(2, false);
-            audioWeapon.weaponType=1;
-            break;
-        case 2:
-            enableWeapon(0, false);
-            enableWeapon(1, true);
-            enableWeapon(2, false);
-            audioWeapon.weaponType=2;
-            break;
-        case 3:
-            enableWeapon(0, false);
-            enableWeapon(1, false);
-            enableWeapon(2, true);
-            audioWeapon.weaponType=3;
-            break;
+            case 1:
+                enableWeapon(0, true);
+                enableWeapon(1, false);
+                enableWeapon(2, false);
+                audioWeapon.weaponType = 1;
+                fireWeapon.weapon = 1;
+                break;
+            case 2:
+                enableWeapon(0, false);
+                enableWeapon(1, true);
+                enableWeapon(2, false);
+                audioWeapon.weaponType = 2;
+                fireWeapon.weapon = 2;
+                break;
+            case 3:
+                enableWeapon(0, false);
+                enableWeapon(1, false);
+                enableWeapon(2, true);
+                audioWeapon.weaponType = 3;
+                fireWeapon.weapon = 3;
+                break;
         }
     }
 

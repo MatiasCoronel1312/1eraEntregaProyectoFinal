@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SecondWpMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+     //este es el segundo enemigo, es igual que el primero pero solo sigue los waypoints
+    //la idea es que sean iguales pero se instancien en diferentes lugares
+   
     [SerializeField] float Speed = 2f;
     [SerializeField] float rotationSpeed = 2f;
     public Transform[] waypoints;
@@ -12,13 +14,13 @@ public class SecondWpMovement : MonoBehaviour
     [SerializeField] float minimumDistance;
     private bool goBack = false;
     [SerializeField] private Animator Zombie;
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         Movement();

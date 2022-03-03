@@ -5,8 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    //el player se mueve con wasd, salta con el space y corre con leftShift
+    //apunta con el boton derecho del mouse y dispara con el izquierdo, aunque por ahora notiene animacion y no se nota la diferencia
+
     [Header("References")]
-    public Camera playerCamera;
+    public Camera playerCamera;// variables para la rotacion de la camara
 
     [Header("Rotation")]
     private float cameraVerticalAngle;
@@ -24,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
 
     private CharacterController ccPlayer;
+        //Tenia animacion de un assets de unity assets pero era muy feo en los detalles y despues de renegar muuucho lo termine borrando y dejando solo el arma
+        //pero deje como comentario algunoas funciones para mas adelante terminarlas
+
 
     //[Header("Animacion")]
    // [SerializeField] private Animator PlayerShooter;
@@ -49,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private void Moveplayer(Vector3 direccion)
     {
         if (Input.GetKey(KeyCode.LeftShift)){
-            ccPlayer.Move(runSpeed * Time.deltaTime * transform.TransformDirection(direccion));
+            ccPlayer.Move(runSpeed * Time.deltaTime * transform.TransformDirection(direccion));//si se mueve apretando tambien el shift va a correr, o sea multiplica la velocidad
         }else{
         ccPlayer.Move(Speed * Time.deltaTime * transform.TransformDirection(direccion));
         }
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour
     private void Look()
     {
 
-
+        //muve la camara con el mouse en Y y X
         rotationinput.x = Input.GetAxis("Mouse X") * rotationSensibility * Time.deltaTime;
 
         rotationinput.y = Input.GetAxis("Mouse Y") * rotationSensibility * Time.deltaTime;
@@ -112,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
         cameraVerticalAngle += rotationinput.y;
 
-        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -15, 15);
+        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -15, 15);//este es el angulo maximo
 
         transform.Rotate(Vector3.up * rotationinput.x);
 
@@ -182,13 +188,5 @@ public class PlayerController : MonoBehaviour
 
 
 
-    //     if (Input.GetKey(KeyCode.LeftShift))
-    //     {
-    //         PlayerShooter.SetBool("Run", true);
-    //     }
-    //     if (Input.GetKeyUp(KeyCode.LeftShift))
-    //     {
-    //         PlayerShooter.SetBool("Run", false);
-    //     }
-    // }
+
 }

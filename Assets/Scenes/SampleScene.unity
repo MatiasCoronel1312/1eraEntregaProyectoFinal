@@ -663,6 +663,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4879718172829658403, guid: 89334ed523b8f8a46a409097cc4309f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879718172829658403, guid: 89334ed523b8f8a46a409097cc4309f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879718172829658403, guid: 89334ed523b8f8a46a409097cc4309f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879718172829658403, guid: 89334ed523b8f8a46a409097cc4309f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 8513859187771203891, guid: 89334ed523b8f8a46a409097cc4309f5, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2288,6 +2304,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9d81443e9383bfc40aa3aee06781e3f2, type: 3}
   - {fileID: 8300000, guid: 53c1f6b62df4c3c43a775776d12a75f0, type: 3}
   - {fileID: 8300000, guid: 87c2132423e606e4d975b8d6a451c5f2, type: 3}
+  - {fileID: 8300000, guid: 605c02fa0ce6a8a408ddaae07b605f83, type: 3}
+  - {fileID: 8300000, guid: 95207cbc8c1ac324287436913a343cd7, type: 3}
 --- !u!82 &750949890
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2406,9 +2424,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 3601694450764211607, guid: 10f26dbfc4e21a448a0d38de09686f5c, type: 3}
   shootPoint: {fileID: 695681075}
+  bulletShootgun: {fileID: 7122339932418359777, guid: 36ee2cfd75cc1814e84f59329c6ba535, type: 3}
+  shootgunPoint: {fileID: 2041817834}
   shootCooldown: 1
   timeShoot: 0
   rangoFire: 10
+  weapon: 1
 --- !u!114 &750949893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,6 +2446,7 @@ MonoBehaviour:
   audioWalkEnd: 2
   shootCooldown: 1
   timeShoot: 0
+  weaponType: 1
 --- !u!114 &750949894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2438,9 +2460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 349517368}
-  - {fileID: 1984378175}
   - {fileID: 691866491}
+  - {fileID: 1984378175}
+  - {fileID: 349517368}
+  typeWeapon: 1
+  audioWeapon: {fileID: 750949893}
+  fireWeapon: {fileID: 750949892}
 --- !u!4 &772082128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010313559602, guid: 7b4f0314f4e30c94185e84a096c302bc, type: 3}
@@ -6606,6 +6631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b4cee33c5a95b4fa7f0ae6bdb49564, type: 3}
+--- !u!4 &2041817834 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4879718172829658403, guid: 89334ed523b8f8a46a409097cc4309f5, type: 3}
+  m_PrefabInstance: {fileID: 209395084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2053023085
 PrefabInstance:
   m_ObjectHideFlags: 0
