@@ -1,8 +1,59 @@
 fileFormatVersion: 2
-guid: ee67c951258094747831ef2031b55852
+guid: e686deb3db66b2d4ca37b1dc3b71f29e
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4781951162920444690
+    second: Armature|ArmatureAction
+  - first:
+      74: 7017430432440313012
+    second: Armature|Cube.001|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: 4828028426687900610
+    second: Armature|Cube.002Action
+  - first:
+      74: -7674904370128968613
+    second: Armature|Cube.002Action.001
+  - first:
+      74: 5449073193131188545
+    second: Armature|CubeAction
+  - first:
+      74: 3999279380505825962
+    second: Cube.002|Cube.001|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: 6712369695479197947
+    second: Cube.002|Cube.002Action
+  - first:
+      74: 6188143692413826237
+    second: Cube.002|Cube.002Action.001
+  - first:
+      74: -2569477126889815120
+    second: Cube.002|CubeAction
+  - first:
+      74: -8303064332974051380
+    second: Cube.001|Cube.001|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: 8888790717876117480
+    second: Cube.001|Cube.002Action
+  - first:
+      74: -503583810911536189
+    second: Cube.001|Cube.002Action.001
+  - first:
+      74: 17017395923089283
+    second: Cube.001|CubeAction
+  - first:
+      74: -7473323230476689904
+    second: Cube.003|Cube.001|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: 3244617880250996793
+    second: Cube.003|Cube.002Action
+  - first:
+      74: 726223806253194669
+    second: Cube.003|Cube.002Action.001
+  - first:
+      74: -1327517643594879202
+    second: Cube.003|CubeAction
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -30,7 +81,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cube.003|CubeAction
+      takeName: Cube.003|CubeAction
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

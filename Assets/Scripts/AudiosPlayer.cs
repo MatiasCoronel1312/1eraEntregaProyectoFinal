@@ -127,7 +127,7 @@ public class AudiosPlayer : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
             {
-                soundManager.SeleccionAudio(4, 0.5f);
+                soundManager.SeleccionAudio(4, 0.3f);
                 canShoot = false;
                 timeShoot = 0;
             }

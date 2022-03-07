@@ -31,24 +31,25 @@ public class PlayerController : MonoBehaviour
         //pero deje como comentario algunoas funciones para mas adelante terminarlas
 
 
-    //[Header("Animacion")]
-   // [SerializeField] private Animator PlayerShooter;
-    //private bool canShoot = true;
-    //[SerializeField] public float shootCooldown = 1f;
-   // [SerializeField] private float timeShoot = 0;
+    [Header("Animacion")]
+    [SerializeField] private Animator PlayerShooter;
+    private bool canShoot = true;
+    [SerializeField] public float shootCooldown = 1f;
+    [SerializeField] private float timeShoot = 0;
 
     private void Start()
     {
-
+        transform.position=GameManager.instancePlayer.positionPlayer; //arranca en la ultima posicion que guardo el GameManager (en teoria, porque a veces falla, no se si tiene que ir en el awake, no se porque falla )
         ccPlayer = GetComponent<CharacterController>();
+
     }
     private void Update()
     {
         ccPlayer.Move(Vector3.down * 5f * Time.deltaTime);
         Look();
-        //Fire();
+        Fire();
        // Reload();
-        //Point();
+        Point();
         Movimiento();
         JumpPlayer();
     }
@@ -126,34 +127,54 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // private void Fire()
+    private void Fire()
 
-    // {
-    //     if ((Input.GetKeyDown(KeyCode.Mouse0)) && (canShoot))
-    //     {
-    //         PlayerShooter.SetBool("Fire", true);
-    //         canShoot = false;
-    //         timeShoot = 0;
-    //     }
-    //     else
-    //     {
-    //         timeShoot += Time.deltaTime;
-    //     }
-    //     if (timeShoot > shootCooldown)
-    //     {
-    //         canShoot = true;
-    //     }
+    {
+        if ((Input.GetKeyDown(KeyCode.Mouse0)) && (canShoot))
+        {
+            PlayerShooter.SetBool("FireGun", true);
+            canShoot = false;
+            timeShoot = 0;
+        }
+        else
+        {
+            timeShoot += Time.deltaTime;
+        }
+        if (timeShoot > shootCooldown)
+        {
+            canShoot = true;
+        }
 
-    //     if (Input.GetKeyUp(KeyCode.Mouse0))
-    //     {
-    //         PlayerShooter.SetBool("Fire", false);
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            PlayerShooter.SetBool("FireGun", false);
 
-    //     }
-    // }
+        }
+    }
 
 
 
-    // private void Reload()
+   
+    private void Point()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+
+        {
+            PlayerShooter.SetBool("Point", true);
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+
+        {
+            PlayerShooter.SetBool("Point", false);
+
+        }
+
+    }
+
+
+     // private void Reload()
     // {
     //     if (Input.GetKey(KeyCode.R))
 
@@ -169,23 +190,6 @@ public class PlayerController : MonoBehaviour
 
     //     }
     // }
-    // private void Point()
-    // {
-    //     if (Input.GetKey(KeyCode.Mouse1))
-
-    //     {
-    //         PlayerShooter.SetBool("Point", true);
-
-    //     }
-
-    //     if (Input.GetKeyUp(KeyCode.Mouse1))
-
-    //     {
-    //         PlayerShooter.SetBool("Point", false);
-
-    //     }
-
-
 
 
 
