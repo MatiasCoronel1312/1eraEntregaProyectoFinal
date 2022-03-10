@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    //el player se mueve con wasd, salta con el space y corre con leftShift
-    //apunta con el boton derecho del mouse y dispara con el izquierdo, aunque por ahora notiene animacion y no se nota la diferencia
+    
 
     [Header("References")]
     public Camera playerCamera;// variables para la rotacion de la camara
@@ -27,21 +26,20 @@ public class PlayerController : MonoBehaviour
 
 
     private CharacterController ccPlayer;
-        //Tenia animacion de un assets de unity assets pero era muy feo en los detalles y despues de renegar muuucho lo termine borrando y dejando solo el arma
-        //pero deje como comentario algunoas funciones para mas adelante terminarlas
-
-
+        
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
     private bool canShoot = true;
     [SerializeField] public float shootCooldown = 1f;
     [SerializeField] private float timeShoot = 0;
+    [SerializeField] GameObject mira;
 
     private void Start()
     {
-        transform.position=GameManager.instancePlayer.positionPlayer; //arranca en la ultima posicion que guardo el GameManager (en teoria, porque a veces falla, no se si tiene que ir en el awake, no se porque falla )
         ccPlayer = GetComponent<CharacterController>();
 
+        transform.position = FindObjectOfType<CheckpointsManager>().GetCheckPoint(GameManager.instancePlayer.lastSP).position;
+        //transform.position=GameManager.instancePlayer.positionPlayer; 
     }
     private void Update()
     {
@@ -161,6 +159,7 @@ public class PlayerController : MonoBehaviour
 
         {
             PlayerShooter.SetBool("Point", true);
+            mira.SetActive(true);
 
         }
 
@@ -168,6 +167,7 @@ public class PlayerController : MonoBehaviour
 
         {
             PlayerShooter.SetBool("Point", false);
+            mira.SetActive(false);
 
         }
 

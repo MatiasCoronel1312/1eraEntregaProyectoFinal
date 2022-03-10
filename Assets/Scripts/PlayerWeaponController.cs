@@ -51,12 +51,11 @@ public class PlayerWeaponController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire))
                 {
-                    if (hit.transform.tag == "Enemy")
-                    {
+                    
                         GameObject b = Instantiate(bullet, shootPoint.transform.position, bullet.transform.rotation);
                         b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
                         Destroy(b, 5f);
-                    }
+                    
                     canShoot = false;
                     timeShoot = 0;
                 }
