@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instancePlayer;
 
     
-    public Vector3 positionPlayer;
+    public static GameManager InstanceAmmoGun { get; private set;}
+    public int gunAmmo =17;
 
     public int lastSP;
 
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
         }else{
             Destroy(gameObject);
         }
+        InstanceAmmoGun = this;
+
     }
     void Start()
     {

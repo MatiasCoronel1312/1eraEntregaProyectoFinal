@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
+    [SerializeField] private Animator PlayerKnife;
+    [SerializeField] private Animator PlayerShotgun;
     private bool canShoot = true;
     [SerializeField] public float shootCooldown = 1f;
     [SerializeField] private float timeShoot = 0;
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
     private void Look()
     {
 
-        //muve la camara con el mouse en Y y X
+        //mueve la camara con el mouse en Y y X
         rotationinput.x = Input.GetAxis("Mouse X") * rotationSensibility * Time.deltaTime;
 
         rotationinput.y = Input.GetAxis("Mouse Y") * rotationSensibility * Time.deltaTime;
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
         cameraVerticalAngle += rotationinput.y;
 
-        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -15, 15);//este es el angulo maximo
+        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -15, 25);//este es el angulo maximo
 
         transform.Rotate(Vector3.up * rotationinput.x);
 
@@ -128,9 +130,12 @@ public class PlayerController : MonoBehaviour
     private void Fire()
 
     {
-        if ((Input.GetKeyDown(KeyCode.Mouse0)) && (canShoot))
+        if ((Input.GetKeyDown(KeyCode.Mouse0)) && (canShoot)&&(GameManager.InstanceAmmoGun.gunAmmo>0))
         {
+            GameManager.InstanceAmmoGun.gunAmmo--;
             PlayerShooter.SetBool("FireGun", true);
+            PlayerKnife.SetBool("KnifeAttack", true);
+            PlayerShotgun.SetBool("ShotgunFire", true);
             canShoot = false;
             timeShoot = 0;
         }
@@ -146,6 +151,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             PlayerShooter.SetBool("FireGun", false);
+            PlayerKnife.SetBool("KnifeAttack", false);
+            PlayerShotgun.SetBool("ShotgunFire", false);
 
         }
     }
@@ -160,6 +167,9 @@ public class PlayerController : MonoBehaviour
         {
             PlayerShooter.SetBool("Point", true);
             mira.SetActive(true);
+            PlayerKnife.SetBool("KnifePoint", true);
+            PlayerShotgun.SetBool("ShotgunPoint", true);
+            
 
         }
 
@@ -168,6 +178,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerShooter.SetBool("Point", false);
             mira.SetActive(false);
+            PlayerKnife.SetBool("KnifePoint", false);
+            PlayerShotgun.SetBool("ShotgunPoint", false);
 
         }
 

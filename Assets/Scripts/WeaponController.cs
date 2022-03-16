@@ -9,6 +9,8 @@ public class WeaponController : MonoBehaviour
     //mas adelante me gustaria agregar mas armas y obviamente sus funciones
     [SerializeField] GameObject[] weapons;
 
+   // [SerializeField] GameObject mira;
+
     public int typeWeapon = 1;
 
     public AudiosPlayer audioWeapon;
@@ -56,8 +58,10 @@ public class WeaponController : MonoBehaviour
                 enableWeapon(0, false);
                 enableWeapon(1, true);
                 enableWeapon(2, false);
+                enableWeapon(3, false);
                 audioWeapon.weaponType = 2;
                 fireWeapon.weapon = 2;
+                // mira.SetActive(false);
                 break;
             case 3:
                 enableWeapon(0, false);

@@ -9,6 +9,7 @@ TagManager:
   - Checkpoint
   - EnemyGenerator
   - Guns
+  - GunAmmo
   layers:
   - Default
   - TransparentFX

@@ -46,16 +46,16 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (canShoot)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0)&&(GameManager.InstanceAmmoGun.gunAmmo>0))
             {
                 RaycastHit hit;
                 if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire))
                 {
-                    
-                        GameObject b = Instantiate(bullet, shootPoint.transform.position, bullet.transform.rotation);
-                        b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
-                        Destroy(b, 5f);
-                    
+
+                    GameObject b = Instantiate(bullet, shootPoint.transform.position, bullet.transform.rotation);
+                    b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
+                    Destroy(b, 5f);
+
                     canShoot = false;
                     timeShoot = 0;
                 }
@@ -105,12 +105,11 @@ public class PlayerWeaponController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(shootgunPoint.transform.position, shootgunPoint.transform.forward, out hit, rangoFire))
                 {
-                    if (hit.transform.tag == "Enemy")
-                    {
-                        GameObject c = Instantiate(bulletShootgun, shootgunPoint.transform.position, bulletShootgun.transform.rotation);
-                        c.GetComponent<Rigidbody>().AddForce(shootgunPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
-                        Destroy(c, 6f);
-                    }
+
+                    GameObject c = Instantiate(bulletShootgun, shootgunPoint.transform.position, bulletShootgun.transform.rotation);
+                    c.GetComponent<Rigidbody>().AddForce(shootgunPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
+                    Destroy(c, 6f);
+
                     canShoot = false;
                     timeShoot = 0;
                 }
