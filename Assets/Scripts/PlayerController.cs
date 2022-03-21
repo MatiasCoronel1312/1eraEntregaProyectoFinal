@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour
     
 
     [Header("References")]
-    public Camera playerCamera;// variables para la rotacion de la camara
+    public Camera playerCamera;
 
-    [Header("Rotation")]
+    [Header("Rotation")]// variables para la rotacion de la camara
     private float cameraVerticalAngle;
     Vector3 moveInput = Vector3.zero;
     Vector3 rotationinput = Vector3.zero;
+    public float rotationSensibility = 60f;
+    [SerializeField] float angleMax = -25f;
+    [SerializeField] float angleMin = 25f;
 
     [Header("Moving")]
 
@@ -22,8 +25,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravedad = -9.81f;
     [SerializeField] float altura = 10f;
     [SerializeField] float Speed = 5f;
-    public float rotationSensibility = 30f;
-
 
     private CharacterController ccPlayer;
         
@@ -31,25 +32,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator PlayerShooter;
     [SerializeField] private Animator PlayerKnife;
     [SerializeField] private Animator PlayerShotgun;
-    private bool canShoot = true;
-    [SerializeField] public float shootCooldown = 1f;
-    [SerializeField] private float timeShoot = 0;
-    [SerializeField] GameObject mira;
+
 
     private void Start()
     {
         ccPlayer = GetComponent<CharacterController>();
 
         transform.position = FindObjectOfType<CheckpointsManager>().GetCheckPoint(GameManager.instancePlayer.lastSP).position;
-        //transform.position=GameManager.instancePlayer.positionPlayer; 
+        
     }
     private void Update()
     {
         ccPlayer.Move(Vector3.down * 5f * Time.deltaTime);
         Look();
-        Fire();
-       // Reload();
-        Point();
         Movimiento();
         JumpPlayer();
     }
@@ -81,11 +76,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            Moveplayer(Vector3.right);
-    
+            Moveplayer(Vector3.right);    
         }
-
-
         
     }
 
@@ -99,15 +91,9 @@ public class PlayerController : MonoBehaviour
      
         }
         velocidad.y += gravedad * Time.deltaTime;
-        ccPlayer.Move(velocidad * Time.deltaTime);
-
-   
+        ccPlayer.Move(velocidad * Time.deltaTime);   
 
     }
-
-
-
-
     private void Look()
     {
 
@@ -119,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
         cameraVerticalAngle += rotationinput.y;
 
-        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -15, 25);//este es el angulo maximo
+        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, angleMax, angleMin);//este es el angulo maximo
 
         transform.Rotate(Vector3.up * rotationinput.x);
 
@@ -127,81 +113,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Fire()
 
-    {
-        if ((Input.GetKeyDown(KeyCode.Mouse0)) && (canShoot)&&(GameManager.InstanceAmmoGun.gunAmmo>0))
-        {
-            GameManager.InstanceAmmoGun.gunAmmo--;
-            PlayerShooter.SetBool("FireGun", true);
-            PlayerKnife.SetBool("KnifeAttack", true);
-            PlayerShotgun.SetBool("ShotgunFire", true);
-            canShoot = false;
-            timeShoot = 0;
-        }
-        else
-        {
-            timeShoot += Time.deltaTime;
-        }
-        if (timeShoot > shootCooldown)
-        {
-            canShoot = true;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            PlayerShooter.SetBool("FireGun", false);
-            PlayerKnife.SetBool("KnifeAttack", false);
-            PlayerShotgun.SetBool("ShotgunFire", false);
-
-        }
-    }
-
-
-
-   
-    private void Point()
-    {
-        if (Input.GetKey(KeyCode.Mouse1))
-
-        {
-            PlayerShooter.SetBool("Point", true);
-            mira.SetActive(true);
-            PlayerKnife.SetBool("KnifePoint", true);
-            PlayerShotgun.SetBool("ShotgunPoint", true);
-            
-
-        }
-
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-
-        {
-            PlayerShooter.SetBool("Point", false);
-            mira.SetActive(false);
-            PlayerKnife.SetBool("KnifePoint", false);
-            PlayerShotgun.SetBool("ShotgunPoint", false);
-
-        }
-
-    }
-
-
-     // private void Reload()
-    // {
-    //     if (Input.GetKey(KeyCode.R))
-
-    //     {
-    //         PlayerShooter.SetBool("Reload", true);
-
-    //     }
-
-    //     if (Input.GetKeyUp(KeyCode.R))
-
-    //     {
-    //         PlayerShooter.SetBool("Reload", false);
-
-    //     }
-    // }
 
 
 

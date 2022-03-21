@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    //con este controlo la funcion de cada arma, con variables del audioPlayer y el PlayerWeapon 
+    //con este activo o desactivo cada arma, lo uso como script padre
     //con la tecla 1,2,y 3 se activa o desactiva la pistola ,el cuchillo y la escopeta
     //mas adelante me gustaria agregar mas armas y obviamente sus funciones
     [SerializeField] GameObject[] weapons;
 
-   // [SerializeField] GameObject mira;
+ 
 
-    public int typeWeapon = 1;
 
-    public AudiosPlayer audioWeapon;
 
-    public PlayerWeaponController fireWeapon;
+    [SerializeField] int typeWeapon = 1;
 
+    //public AudiosPlayer audioWeapon;
+
+    //public PlayerWeaponController fireWeapon;
     void Start()
     {
         enableWeapon(0, true);
+
+
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -37,48 +40,42 @@ public class WeaponController : MonoBehaviour
         {
             typeWeapon = 3;
         }
-
         SwitchWeapon();
     }
 
     public void SwitchWeapon()
     {
-
         switch (typeWeapon)
         {
-
             case 1:
                 enableWeapon(0, true);
                 enableWeapon(1, false);
                 enableWeapon(2, false);
-                audioWeapon.weaponType = 1;
-                fireWeapon.weapon = 1;
+                // audioWeapon.weaponType = 1;
+                // fireWeapon.weapon = 1;
                 break;
             case 2:
                 enableWeapon(0, false);
                 enableWeapon(1, true);
                 enableWeapon(2, false);
-                enableWeapon(3, false);
-                audioWeapon.weaponType = 2;
-                fireWeapon.weapon = 2;
-                // mira.SetActive(false);
+                // enableWeapon(3, false);
+                // audioWeapon.weaponType = 2;
+                // fireWeapon.weapon = 2;
+
                 break;
             case 3:
                 enableWeapon(0, false);
                 enableWeapon(1, false);
                 enableWeapon(2, true);
-                audioWeapon.weaponType = 3;
-                fireWeapon.weapon = 3;
+                //audioWeapon.weaponType = 3;
+                //fireWeapon.weapon = 3;
                 break;
         }
     }
-
-
-
-
-
     void enableWeapon(int posicion, bool status)
     {
         weapons[posicion].SetActive(status);
     }
+
+
 }

@@ -772,11 +772,6 @@ Transform:
   m_Father: {fileID: 2057746719}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &173353889 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5709561803929157488, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
-  m_PrefabInstance: {fileID: 1913109057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &203561802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1043,11 +1038,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287197151}
   m_CullTransparentMesh: 1
---- !u!4 &300017786 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 898441123912481251, guid: b76fac4699824e64aa27a8993e07fd23, type: 3}
-  m_PrefabInstance: {fileID: 1874190331}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &323438128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5004,17 +4994,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 573870151}
+  rotationSensibility: 60
   runSpeed: 4
   gravedad: -9.81
   altura: 10
   Speed: 2
-  rotationSensibility: 60
   PlayerShooter: {fileID: 1578072113}
   PlayerKnife: {fileID: 1111166044}
   PlayerShotgun: {fileID: 2037947268}
-  shootCooldown: 0.8
-  timeShoot: 0
-  mira: {fileID: 158952894}
 --- !u!143 &750949887
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5184,14 +5171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0d171efd5f5dd4db3bde7e7f66cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 3601694450764211607, guid: 10f26dbfc4e21a448a0d38de09686f5c, type: 3}
-  shootPoint: {fileID: 300017786}
-  bulletShootgun: {fileID: 7122339932418359777, guid: 36ee2cfd75cc1814e84f59329c6ba535, type: 3}
-  shootgunPoint: {fileID: 173353889}
-  shootCooldown: 1
-  timeShoot: 0
-  rangoFire: 10
-  weapon: 1
 --- !u!114 &750949893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5206,9 +5185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioRunEnd: 1.8
   audioWalkEnd: 2
-  shootCooldown: 1
-  timeShoot: 0
-  weaponType: 1
 --- !u!114 &750949894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5225,10 +5201,7 @@ MonoBehaviour:
   - {fileID: 1578072110}
   - {fileID: 1111166041}
   - {fileID: 2037947265}
-  - {fileID: 158952894}
   typeWeapon: 1
-  audioWeapon: {fileID: 750949893}
-  fireWeapon: {fileID: 750949892}
 --- !u!114 &750949895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7736,6 +7709,21 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2961766248903084661, guid: 49e27ea3d66ca2846b31f2390fce64bd, type: 3}
   m_PrefabInstance: {fileID: 400960528}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1111166045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111166041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0fc77995a3d934bb032f6a2ae66cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootCooldown: 1
+  timeShoot: 0
+  PlayerKnife: {fileID: 1111166044}
 --- !u!1 &1111498904
 GameObject:
   m_ObjectHideFlags: 0
@@ -10154,6 +10142,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4230570248647883933, guid: b76fac4699824e64aa27a8993e07fd23, type: 3}
+      propertyPath: mira
+      value: 
+      objectReference: {fileID: 158952894}
     - target: {fileID: 4233370410862163426, guid: b76fac4699824e64aa27a8993e07fd23, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -10886,6 +10878,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
+      propertyPath: mira
+      value: 
+      objectReference: {fileID: 158952894}
+    - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
+      propertyPath: rangoFire
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
+      propertyPath: PlayerShotgun
+      value: 
+      objectReference: {fileID: 2037947268}
     - target: {fileID: 7461303204369820961, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0000000035762786
