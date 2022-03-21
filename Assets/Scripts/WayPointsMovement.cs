@@ -7,20 +7,18 @@ public class WayPointsMovement : MonoBehaviour
     //el enemigo tiene un recorrido establecidoo por waypoints, pero si esta a una distancia minima del player (distancePlayer) lo empieza a seguir 
     //y si esta pegadito al player lo ataca (attackPlayer)pero por ahora solo la animacion
     // la idea es que despues el enemmy se instancie desde varios puntos, se muera segun el impacto de que arma y lastime al player
-    [SerializeField] float rotationSpeed = 2f;
+    
     public Transform[] waypoints;
     private int currentIndex = 0;
     [SerializeField] float minimumDistance;
     private bool goBack = false;
+    [SerializeField] protected EnemyData enemy;
 
-    [SerializeField] private Animator Zombie; //para la animacion 
+    [SerializeField] private Animator Zombie;     
     public Transform player;
-    //y las variables para la persecucion del player
+    
 
-    public float speedEnemy;
-
-    public float distancePlayer;
-    public float attackPlayer;
+    
     void Start()
     {
 
@@ -40,15 +38,15 @@ public class WayPointsMovement : MonoBehaviour
         Vector3 direction = deltaVector.normalized;
 
 
-        if (deltaVector.magnitude <= attackPlayer) //a la distancia minima lo ataca
+        if (deltaVector.magnitude <= enemy.attackPlayer) //a la distancia minima lo ataca
         {
             Zombie.SetBool("Attack", true);//activa animacion de ataque (todavia no lastima a nadie)
             Zombie.SetBool("ModePersecution", false);
         }
-        else if ((deltaVector.magnitude <= distancePlayer)&&(deltaVector.magnitude >= attackPlayer)) // El enemigo cambia a modo persecucion cuando sea moner la distancia al player pero no tanto, sino lo ataca
+        else if ((deltaVector.magnitude <= enemy.distancePlayer)&&(deltaVector.magnitude >= enemy.attackPlayer)) // El enemigo cambia a modo persecucion cuando sea moner la distancia al player pero no tanto, sino lo ataca
         {
-            transform.forward = Vector3.Lerp(transform.forward, direction, rotationSpeed * Time.deltaTime);// copia su angulo del player
-            transform.position += direction * speedEnemy * Time.deltaTime;// y avanza
+            transform.forward = Vector3.Lerp(transform.forward, direction, enemy.rotationSpeed * Time.deltaTime);// copia su angulo del player
+            transform.position += direction * enemy.speedEnemy * Time.deltaTime;// y avanza
             Zombie.SetBool("ModePersecution", true);//solo activa animacion de persecucion
             Zombie.SetBool("WalkSlow", false);
              Zombie.SetBool("Attack", false);
@@ -58,8 +56,8 @@ public class WayPointsMovement : MonoBehaviour
         {
             Vector3 gamaVector = waypoints[currentIndex].position - transform.position;
             Vector3 directionB = gamaVector.normalized;
-            transform.forward = Vector3.Lerp(transform.forward, directionB, rotationSpeed * Time.deltaTime);
-            transform.position += transform.forward * speedEnemy * Time.deltaTime;
+            transform.forward = Vector3.Lerp(transform.forward, directionB, enemy.rotationSpeed * Time.deltaTime);
+            transform.position += transform.forward * enemy.speedEnemy * Time.deltaTime;
             Zombie.SetBool("WalkSlow", true);
             Zombie.SetBool("ModePersecution", false);
             if (gamaVector.magnitude <= minimumDistance)

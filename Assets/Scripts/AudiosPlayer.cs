@@ -15,15 +15,7 @@ public class AudiosPlayer : MonoBehaviour
     private float timePassWalk = 0;
     public float audioWalkEnd = 2f;
 
-    // [Header("Fire")]
 
-
-
-    //private bool canShoot = true;
-    //[SerializeField] public float shootCooldown = 1f;
-    //[SerializeField] private float timeShoot = 0;
-
-    //public int weaponType = 1;//variable para diferenciar el sonido del arma, se controla desde el weaponcontroller
 
 
     void Start()
@@ -38,29 +30,6 @@ public class AudiosPlayer : MonoBehaviour
 
     void Update()
     {
-
-        //segun que tipo de arma se llama una funcion
-        // if (weaponType == 1)
-        // {
-        //     FireGun();
-        // }
-        // if (weaponType == 3)
-        // {
-        //     FireShootgun();
-        // }
-        // if (weaponType == 2)
-        // {
-        //     KnifeAudio();
-        // }
-
-
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            soundManager.SeleccionAudio(1, 0.5f);
-
-        }
-
 
         if ((Input.GetKey(KeyCode.W)) && (walk && run))
         {
@@ -100,71 +69,5 @@ public class AudiosPlayer : MonoBehaviour
     }
 
 
-    // public void FireGun()
-    // {
-    //     if (canShoot)
-    //     {
-    //         if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
-    //         {
-    //             soundManager.SeleccionAudio(0, 0.5f);
-    //             canShoot = false;
-    //             timeShoot = 0;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         timeShoot += Time.deltaTime;
-    //     }
-    //     if (timeShoot > shootCooldown)
-    //     {
-    //         canShoot = true;
-    //     }
-    // }
-
-    // public void FireShootgun()
-    // {
-    //     if (canShoot)
-    //     {
-    //         if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
-    //         {
-    //             soundManager.SeleccionAudio(4, 0.3f);
-    //             canShoot = false;
-    //             timeShoot = 0;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         timeShoot += Time.deltaTime;
-    //     }
-    //     if (timeShoot > shootCooldown)
-    //     {
-    //         canShoot = true;
-    //     }
-    // }
-
-
-
-
-
-    // public void KnifeAudio()
-    // {
-    //     if (canShoot)
-    //     {
-    //         if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
-    //         {
-    //             soundManager.SeleccionAudio(5, 0.5f);
-    //             canShoot = false;
-    //             timeShoot = 0;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         timeShoot += Time.deltaTime;
-    //     }
-    //     if (timeShoot > shootCooldown)
-    //     {
-    //         canShoot = true;
-    //     }
-    // }
-
+    
 }
