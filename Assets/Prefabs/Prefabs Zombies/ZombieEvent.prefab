@@ -83,7 +83,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871125626766003566}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -104,6 +104,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8727147, y: 1.7534524, z: 0.7924711}
   m_Center: {x: 0.019801214, y: 0.8879203, z: 0.011053819}
+--- !u!114 &-8050790958795716886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871125626766003566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ed0b11850145c4995dd76170bb2500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1430341138928069326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +138,8 @@ MonoBehaviour:
   enemy: {fileID: 11400000, guid: a0f4b480522cbea44bed6ebc5182d579, type: 2}
   Zombie: {fileID: 4694660394042970631}
   player: {fileID: 0}
+  zombieMove: {fileID: 4844024658722078411}
+  alpha: 0.05
 --- !u!114 &4844024658722078411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39775e3ad322834fa118665465c2a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
+  timerAnimation: 4
+  Zombie: {fileID: 4694660394042970631}

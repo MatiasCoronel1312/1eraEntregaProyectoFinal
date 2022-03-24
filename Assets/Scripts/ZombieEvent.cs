@@ -14,6 +14,8 @@ public class ZombieEvent : MonoBehaviour
 
     [SerializeField] private Animator Zombie;     
      [SerializeField] private GameObject player;
+     [SerializeField] public EnemyCollision zombieMove;
+     public float alpha;
     
 
     
@@ -28,6 +30,11 @@ public class ZombieEvent : MonoBehaviour
     void Update()
     {
         Movement();
+
+        if(zombieMove.isDeath){
+            this.enabled=false;
+        }
+        
         
        
     }
@@ -49,8 +56,9 @@ public class ZombieEvent : MonoBehaviour
             transform.forward = Vector3.Lerp(transform.forward, direction, enemy.rotationSpeed * Time.deltaTime);// copia su angulo del player
             transform.position += direction * enemy.speedEnemy * Time.deltaTime;// y avanza
             Zombie.SetBool("Persecution", true);//solo activa animacion de persecucion
+            transform.position += Vector3.down *alpha;
             
-            // Zombie.SetBool("Attack", false);
+            Zombie.SetBool("Attack", false);
 
         }
         else// y si esta muy lejos solo camina el recorrido de waypoints
@@ -59,6 +67,7 @@ public class ZombieEvent : MonoBehaviour
             Vector3 directionB = gamaVector.normalized;
             transform.forward = Vector3.Lerp(transform.forward, directionB, enemy.rotationSpeed * Time.deltaTime);
             transform.position += transform.forward * enemy.speedEnemy * Time.deltaTime;
+            transform.position += Vector3.down *alpha;
            
             Zombie.SetBool("Persecution", true);
             if (gamaVector.magnitude <= minimumDistance)
