@@ -6,7 +6,7 @@ public class GeneratorEnemyEvent : MonoBehaviour
 {
     [SerializeField] GameObject zombies;
     [SerializeField] Transform spawnPoint;
-    [SerializeField] public float spawnInterval = 5f;
+    [SerializeField] public float spawnInterval = 8f;
 
     private void Awake()
     {

@@ -28,6 +28,7 @@ public class ZombieEvent : MonoBehaviour
     void Update()
     {
         Movement();
+        
        
     }
 

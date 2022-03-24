@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyEvent
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  speedEnemy: 4
+  speedEnemy: 3
   distancePlayer: 8
   attackPlayer: 1
