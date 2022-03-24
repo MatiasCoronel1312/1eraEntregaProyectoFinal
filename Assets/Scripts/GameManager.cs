@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         if (instancePlayer==null){
             instancePlayer=this;
             DontDestroyOnLoad(gameObject);
-            //positionPlayer= new Vector3 (0f,0.6f,100f);//posicion inicial del player, despues de pasar por algun checkpoint se instacia la variable
+            
 
 
         }else{

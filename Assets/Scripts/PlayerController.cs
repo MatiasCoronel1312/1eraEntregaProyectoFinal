@@ -78,11 +78,13 @@ public class PlayerController : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Space) && ccPlayer.isGrounded)
+        
         {
-            velocidad.y = Mathf.Sqrt(player.altura * player.gravedad);
-     
+            velocidad.y = Mathf.Sqrt(player.altura * player.gravedad);     
         }
+
         velocidad.y += player.gravedad * Time.deltaTime;
+
         ccPlayer.Move(velocidad * Time.deltaTime);   
 
     }

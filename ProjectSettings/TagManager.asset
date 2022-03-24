@@ -10,6 +10,7 @@ TagManager:
   - EnemyGenerator
   - Guns
   - GunAmmo
+  - Waypoins
   layers:
   - Default
   - TransparentFX
