@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerWeaponController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] protected bool canShoot = true;
     [SerializeField] protected float timeShoot = 0;
     [SerializeField] protected float shootCooldown = 1f;
+    
     void Start()
     {
 

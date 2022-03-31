@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class GunController : PlayerWeaponController
 {
@@ -10,6 +12,8 @@ public class GunController : PlayerWeaponController
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
     [SerializeField] GameObject mira;
+
+    public event Action OnFlash;
 
     [Header("Audio")]
     private SoundManagerPlayer soundManager;
@@ -29,6 +33,7 @@ public class GunController : PlayerWeaponController
     {
         if ((canShoot) && (GameManager.InstanceAmmoGun.gunAmmo > 0))
         {
+             OnFlash?.Invoke();
             GameManager.InstanceAmmoGun.gunAmmo--;
             PlayerShooter.SetBool("FireGun", true);
             soundManager.SeleccionAudio(0, 0.5f);

@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     public event Action OnEvent;
 
     [SerializeField] private UnityEvent OnEvents;
+    
     void Start()
     {
         

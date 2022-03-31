@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerCollision : MonoBehaviour
 {
+    public event Action OnDamage;
     public LifePlayer lifeBar;
     public float damageAmount = 2f ;
     
@@ -12,6 +14,7 @@ public class PlayerCollision : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            OnDamage?.Invoke();
             lifeBar.LifeCurrent-= damageAmount;
             if(lifeBar.LifeCurrent==0)
             {

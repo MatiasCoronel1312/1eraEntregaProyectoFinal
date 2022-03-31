@@ -14,12 +14,12 @@ public class PlayerController : MonoBehaviour
     private float cameraVerticalAngle;
     Vector3 moveInput = Vector3.zero;
     Vector3 rotationinput = Vector3.zero;
- 
+
 
     [Header("Moving")]
     private Vector3 velocidad;
     private CharacterController ccPlayer;
-        
+
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
     [SerializeField] private Animator PlayerKnife;
@@ -31,7 +31,11 @@ public class PlayerController : MonoBehaviour
         ccPlayer = GetComponent<CharacterController>();
 
         transform.position = FindObjectOfType<CheckpointsManager>().GetCheckPoint(GameManager.instancePlayer.lastSP).position;
-        
+
+        Cursor.visible = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     private void Update()
     {
@@ -39,13 +43,22 @@ public class PlayerController : MonoBehaviour
         Look();
         Movimiento();
         JumpPlayer();
+        if (Input.GetKey(KeyCode.P))
+        {
+            Cursor.visible = true;
+
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     private void Moveplayer(Vector3 direccion)
     {
-        if (Input.GetKey(KeyCode.LeftShift)){
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
             ccPlayer.Move(player.runSpeed * Time.deltaTime * transform.TransformDirection(direccion));//si se mueve apretando tambien el shift va a correr, o sea multiplica la velocidad
-        }else{
-        ccPlayer.Move(player.Speed * Time.deltaTime * transform.TransformDirection(direccion));
+        }
+        else
+        {
+            ccPlayer.Move(player.Speed * Time.deltaTime * transform.TransformDirection(direccion));
         }
     }
     private void Movimiento()
@@ -55,7 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             Moveplayer(Vector3.forward);
         }
-       
+
         if (Input.GetKey(KeyCode.A))
         {
             Moveplayer(Vector3.left);
@@ -68,9 +81,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            Moveplayer(Vector3.right);    
+            Moveplayer(Vector3.right);
         }
-        
+
     }
 
 
@@ -78,14 +91,14 @@ public class PlayerController : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Space) && ccPlayer.isGrounded)
-        
+
         {
-            velocidad.y = Mathf.Sqrt(player.altura * player.gravedad);     
+            velocidad.y = Mathf.Sqrt(player.altura * player.gravedad);
         }
 
         velocidad.y += player.gravedad * Time.deltaTime;
 
-        ccPlayer.Move(velocidad * Time.deltaTime);   
+        ccPlayer.Move(velocidad * Time.deltaTime);
 
     }
     private void Look()
