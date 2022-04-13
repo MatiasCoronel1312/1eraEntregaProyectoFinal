@@ -9,7 +9,6 @@ public class WeaponController : MonoBehaviour
     //mas adelante me gustaria agregar mas armas y obviamente sus funciones
     [SerializeField] GameObject[] weapons;
 
- 
 
 
 
@@ -21,11 +20,9 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         enableWeapon(0, true);
-
-
     }
 
-    // Update is called once per frame
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -51,6 +48,9 @@ public class WeaponController : MonoBehaviour
                 enableWeapon(0, true);
                 enableWeapon(1, false);
                 enableWeapon(2, false);
+                enableWeapon(3, true);
+                enableWeapon(4, false);
+                enableWeapon(5, false);
                 // audioWeapon.weaponType = 1;
                 // fireWeapon.weapon = 1;
                 break;
@@ -58,6 +58,9 @@ public class WeaponController : MonoBehaviour
                 enableWeapon(0, false);
                 enableWeapon(1, true);
                 enableWeapon(2, false);
+                enableWeapon(3, false);
+                enableWeapon(4, true);
+                enableWeapon(5, false);
                 // enableWeapon(3, false);
                 // audioWeapon.weaponType = 2;
                 // fireWeapon.weapon = 2;
@@ -67,6 +70,9 @@ public class WeaponController : MonoBehaviour
                 enableWeapon(0, false);
                 enableWeapon(1, false);
                 enableWeapon(2, true);
+                enableWeapon(3, false);
+                enableWeapon(4, false);
+                enableWeapon(5, true);
                 //audioWeapon.weaponType = 3;
                 //fireWeapon.weapon = 3;
                 break;

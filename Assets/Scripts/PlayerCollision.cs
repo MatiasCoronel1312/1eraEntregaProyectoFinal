@@ -9,8 +9,15 @@ public class PlayerCollision : MonoBehaviour
     public event Action OnDamage;
     public LifePlayer lifeBar;
     public float damageAmount = 2f ;
+
+    [Header("Audio")]
+    private SoundManagerPlayer soundManager;
+
+    private void Awake()
+    {
+        soundManager = FindObjectOfType<SoundManagerPlayer>();
+    }
     
-//este script solo reinicia la escena despues de perder
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -31,8 +38,7 @@ public class PlayerCollision : MonoBehaviour
         
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            Debug.Log(other.gameObject.name);
-           
+            //Debug.Log(other.gameObject.name);
             CheckpointsManager managerCP = other.transform.parent.GetComponent<CheckpointsManager>();
             managerCP.FindCheckPoint(other.gameObject.name);
         }
@@ -41,6 +47,15 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log(other.gameObject.name);
             GameManager.InstanceAmmoGun.gunAmmo += other.gameObject.GetComponent<AmmoGunBox>().ammo;
-            Destroy(other.gameObject);        }
+            Destroy(other.gameObject);
+            soundManager.SeleccionAudio(7, 0.2f);        }
+    
+
+        if (other.gameObject.CompareTag("ShotergunAmmo"))
+        {
+            Debug.Log(other.gameObject.name);
+            GameManager.InstanceAmmoGun.shotergunAmmo += other.gameObject.GetComponent<AmmoShotergunBox>().ammoShotergun;
+            Destroy(other.gameObject);
+            soundManager.SeleccionAudio(7, 0.2f);        }
     }
 }

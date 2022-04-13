@@ -8,7 +8,14 @@ public class GameManager : MonoBehaviour
 
     
     public static GameManager InstanceAmmoGun { get; private set;}
-    public int gunAmmo =17;
+
+    public int gunAmmo =0;
+
+    public int gunChargerAmmo =17;
+    
+    public int shotergunAmmo =0;
+    
+    public int shotergunChargerAmmo =8;
 
     public int lastSP;
 

@@ -5,7 +5,7 @@ using System;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-       [SerializeField] protected float rangoFire= 10f;
+    [SerializeField] protected float rangoFire= 10f;
     [SerializeField] protected bool canShoot = true;
     [SerializeField] protected float timeShoot = 0;
     [SerializeField] protected float shootCooldown = 1f;
@@ -25,7 +25,7 @@ public class PlayerWeaponController : MonoBehaviour
             UndoFire();
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Reload();
         }
@@ -62,11 +62,11 @@ public class PlayerWeaponController : MonoBehaviour
     }
     protected virtual void Reload()
     {
-        Debug.Log("Recargo");
+        //Debug.Log("Recargo");
     }
     protected virtual void UndoReload()
     {
-        Debug.Log("Suelto Recargar");
+        //Debug.Log("Suelto Recargar");
     }
 
 

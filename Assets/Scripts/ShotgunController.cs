@@ -5,14 +5,22 @@ using System;
 
 public class ShotgunController : PlayerWeaponController
 {
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject cartridge;
+    [SerializeField] private Transform Recamara;
     [SerializeField] private Transform shootPoint;
+    private int placeCharger;
 
 
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShotgun;
     [SerializeField] GameObject mira;
+    [SerializeField] GameObject effectParticles;
+    [SerializeField] GameObject effectSmoke;
+    [SerializeField] GameObject bulletHole;
+
+
     public event Action OnFlash;
+    public LayerMask hittabletLayers;
 
 
     [Header("Audio")]
@@ -31,19 +39,28 @@ public class ShotgunController : PlayerWeaponController
     protected override void Fire()
 
     {
-        if ((canShoot) && (GameManager.InstanceAmmoGun.gunAmmo > 0))
+        if ((canShoot) && (GameManager.InstanceAmmoGun.shotergunChargerAmmo > 0))
         {
-             OnFlash?.Invoke();
-            GameManager.InstanceAmmoGun.gunAmmo--;
+            OnFlash?.Invoke();
+            GameManager.InstanceAmmoGun.shotergunChargerAmmo--;
             PlayerShotgun.SetBool("ShotgunFire", true);
             soundManager.SeleccionAudio(4, 0.3f);
             RaycastHit hit;
-            if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire))
+
+            if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                GameObject b = Instantiate(bullet, shootPoint.transform.position, bullet.transform.rotation);
-                b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
-                Destroy(b, 5f);
+                GameObject a = Instantiate(effectSmoke, hit.point, hit.transform.rotation);
+                Destroy(a, 2f);
+                GameObject bulletHoleClone = Instantiate(bulletHole, hit.point+hit.normal*0.001f, Quaternion.LookRotation(hit.normal));
+                Destroy(bulletHoleClone, 4f);
             }
+            
+            GameObject b = Instantiate(effectParticles, shootPoint.transform.position, shootPoint.transform.rotation);
+            //b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
+            Destroy(b, 1f);
+            GameObject c = Instantiate(cartridge, Recamara.transform.position, Recamara.transform.rotation);
+            c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.5f, ForceMode.Impulse);
+            Destroy(c, 1.5f); 
 
             canShoot = false;
             timeShoot = 0;
@@ -81,14 +98,28 @@ public class ShotgunController : PlayerWeaponController
 
 
 
-    // protected override void Reload()
-    // {
-    //     PlayerShotgun.SetBool("ReloadShotgun", true);
-    // }
-    // protected override void UndoReload()
-    // {
-    //     PlayerShotgun.SetBool("ReloadShotgun", false);
-    // }
+    protected override void Reload()
+    {
+        
+        if(( GameManager.InstanceAmmoGun.shotergunAmmo > 0 ) && ( GameManager.InstanceAmmoGun.shotergunChargerAmmo < 8 ))
+        {
+            PlayerShotgun.SetBool("Reload", true);
+            soundManager.SeleccionAudio(6, 0.6f);
+            placeCharger = 8 - GameManager.InstanceAmmoGun.shotergunChargerAmmo;
+            if(GameManager.InstanceAmmoGun.shotergunAmmo>placeCharger){
+                GameManager.InstanceAmmoGun.shotergunAmmo-=placeCharger;
+                GameManager.InstanceAmmoGun.shotergunChargerAmmo+=placeCharger;
+            }else{
+                GameManager.InstanceAmmoGun.shotergunChargerAmmo+=GameManager.InstanceAmmoGun.shotergunAmmo;
+                GameManager.InstanceAmmoGun.shotergunAmmo=0;
+            }
+
+        }
+    }
+    protected override void UndoReload()
+    {
+        PlayerShotgun.SetBool("Reload", false);
+    }
 
 
     private void OnDrawGizmos()

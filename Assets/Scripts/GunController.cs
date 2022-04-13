@@ -6,14 +6,24 @@ using UnityEngine;
 
 public class GunController : PlayerWeaponController
 {
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject cartridge;
+    [SerializeField] private Transform Recamara;
     [SerializeField] private Transform shootPoint;
+    //private int gunAmmo;
+    //private int gunCharger;
+    private int placeCharger;
+
 
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
     [SerializeField] GameObject mira;
+    [SerializeField] GameObject effectParticles;
+    [SerializeField] GameObject effectSmoke;
+    [SerializeField] GameObject bulletHole;
+
 
     public event Action OnFlash;
+    public LayerMask hittabletLayers;
 
     [Header("Audio")]
     private SoundManagerPlayer soundManager;
@@ -23,6 +33,8 @@ public class GunController : PlayerWeaponController
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManagerPlayer>();
+        //gunCharger = GameManager.InstanceAmmoGun.gunChargerAmmo;
+        //gunAmmo = GameManager.InstanceAmmoGun.gunAmmo;
     }
     void Start()
     {
@@ -31,19 +43,28 @@ public class GunController : PlayerWeaponController
     protected override void Fire()
 
     {
-        if ((canShoot) && (GameManager.InstanceAmmoGun.gunAmmo > 0))
+        if ((canShoot) && (GameManager.InstanceAmmoGun.gunChargerAmmo > 0))
         {
-             OnFlash?.Invoke();
-            GameManager.InstanceAmmoGun.gunAmmo--;
+            OnFlash?.Invoke();
+            GameManager.InstanceAmmoGun.gunChargerAmmo--;
             PlayerShooter.SetBool("FireGun", true);
             soundManager.SeleccionAudio(0, 0.5f);
             RaycastHit hit;
-            if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire))
+            if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                GameObject b = Instantiate(bullet, shootPoint.transform.position, bullet.transform.rotation);
-                b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
-                Destroy(b, 5f);
+                GameObject a = Instantiate(effectSmoke, hit.point, hit.transform.rotation);
+                Destroy(a, 2f);
+                GameObject bulletHoleClone = Instantiate(bulletHole, hit.point+hit.normal*0.001f, Quaternion.LookRotation(hit.normal));
+                Destroy(bulletHoleClone, 4f);
             }
+            
+            GameObject b = Instantiate(effectParticles, shootPoint.transform.position, shootPoint.transform.rotation);
+            //b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
+            Destroy(b, 1f);
+            GameObject c = Instantiate(cartridge, Recamara.transform.position, Recamara.transform.rotation);
+            c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.8f, ForceMode.Impulse);
+            Destroy(c, 1.5f);            
+            
 
             canShoot = false;
             timeShoot = 0;
@@ -85,9 +106,21 @@ public class GunController : PlayerWeaponController
 
     protected override void Reload()
     {
+        if(( GameManager.InstanceAmmoGun.gunAmmo > 0 ) && ( GameManager.InstanceAmmoGun.gunChargerAmmo < 17 ))
+        {
+            //Debug.Log("anda");
+            PlayerShooter.SetBool("Reload", true);
+            soundManager.SeleccionAudio(1, 0.5f);
+            placeCharger = 17 - GameManager.InstanceAmmoGun.gunChargerAmmo;
+            if(GameManager.InstanceAmmoGun.gunAmmo>placeCharger){
+                GameManager.InstanceAmmoGun.gunAmmo-=placeCharger;
+                GameManager.InstanceAmmoGun.gunChargerAmmo+=placeCharger;
+            }else{
+                GameManager.InstanceAmmoGun.gunChargerAmmo+=GameManager.InstanceAmmoGun.gunAmmo;
+                GameManager.InstanceAmmoGun.gunAmmo=0;
+            }
 
-        //PlayerShooter.SetBool("Reload", true);
-        soundManager.SeleccionAudio(1, 0.5f);
+        }
 
     }
 
@@ -95,7 +128,7 @@ public class GunController : PlayerWeaponController
 
 
     {
-        //PlayerShooter.SetBool("Reload", false);
+        PlayerShooter.SetBool("Reload", false);
 
     }
 
