@@ -12,6 +12,7 @@ TagManager:
   - GunAmmo
   - Waypoins
   - ShotergunAmmo
+  - Medicine
   layers:
   - Default
   - TransparentFX

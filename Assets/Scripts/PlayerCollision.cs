@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
         {
             OnDamage?.Invoke();
             lifeBar.LifeCurrent-= damageAmount;
-            if(lifeBar.LifeCurrent==0)
+            if(lifeBar.LifeCurrent<=0)
             {
             Debug.Log("Game Over");
             SceneManager.LoadScene("Nivel1");
@@ -55,6 +55,14 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log(other.gameObject.name);
             GameManager.InstanceAmmoGun.shotergunAmmo += other.gameObject.GetComponent<AmmoShotergunBox>().ammoShotergun;
+            Destroy(other.gameObject);
+            soundManager.SeleccionAudio(7, 0.2f);        }
+
+
+        if (other.gameObject.CompareTag("Medicine"))
+        {
+            Debug.Log(other.gameObject.name);
+            lifeBar.LifeCurrent+= 25;
             Destroy(other.gameObject);
             soundManager.SeleccionAudio(7, 0.2f);        }
     }
