@@ -13,6 +13,10 @@ TagManager:
   - Waypoins
   - ShotergunAmmo
   - Medicine
+  - Waypoins1
+  - RayPoint
+  - RayPoint2
+  - AttackEnemy
   layers:
   - Default
   - TransparentFX
@@ -22,7 +26,7 @@ TagManager:
   - UI
   - Weapon
   - Smoke
-  - 
+  - Enemy
   - 
   - 
   - 

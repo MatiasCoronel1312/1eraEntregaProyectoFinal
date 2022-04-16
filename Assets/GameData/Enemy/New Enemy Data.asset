@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New Enemy Data
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  speedEnemy: 2
+  speedEnemy: 0.45
   distancePlayer: 10
   attackPlayer: 1
+  bitePlayer: 0.5

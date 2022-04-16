@@ -5,10 +5,10 @@ using UnityEngine;
 public class KnifeController : PlayerWeaponController
 {
 
-   
     [Header("Animacion")]
     [SerializeField] private Animator PlayerKnife;
-    
+    //[SerializeField] GameObject playerKnife;
+    [SerializeField] Collider colliderKnife;    
 
     [Header("Audio")]
     private SoundManagerPlayer soundManager;
@@ -18,6 +18,8 @@ public class KnifeController : PlayerWeaponController
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManagerPlayer>();
+        
+        //collider = playerKnife.GetComponent<Collider>();
     }
     void Start()
     {
@@ -30,6 +32,7 @@ public class KnifeController : PlayerWeaponController
         {
             PlayerKnife.SetBool("KnifeAttack", true);
             soundManager.SeleccionAudio(5, 0.5f);
+            colliderKnife.enabled=true;
             canShoot = false;
             timeShoot = 0;
         }
@@ -44,7 +47,7 @@ public class KnifeController : PlayerWeaponController
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             PlayerKnife.SetBool("KnifeAttack", false);
-
+            colliderKnife.enabled=false;
 
         }
     }
@@ -53,7 +56,7 @@ public class KnifeController : PlayerWeaponController
 
     {
         PlayerKnife.SetBool("KnifePoint", true);
-         timeShoot += Time.deltaTime;
+        timeShoot += Time.deltaTime;
     }
 
     protected override void UndoPoint()
@@ -74,5 +77,5 @@ public class KnifeController : PlayerWeaponController
     // }
 
 
-   
+
 }

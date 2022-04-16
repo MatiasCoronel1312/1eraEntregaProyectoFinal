@@ -10,17 +10,14 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] public float timerAnimation = 2f;
     [SerializeField] private Animator Zombie;
     
-   
     void Update()
     {
         if (isDeath)
         {
             timer = timer + Time.deltaTime;
-           
         }
         if (timer >= timerAnimation)
         {
-           
             
             Destroy(gameObject);
         }

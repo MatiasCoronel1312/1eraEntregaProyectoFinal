@@ -5,7 +5,7 @@ using System;
 
 public class ShotgunController : PlayerWeaponController
 {
-    [SerializeField] private GameObject cartridge;
+
     [SerializeField] private Transform Recamara;
     [SerializeField] private Transform shootPoint;
     private int placeCharger;
@@ -14,9 +14,7 @@ public class ShotgunController : PlayerWeaponController
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShotgun;
     [SerializeField] GameObject mira;
-    [SerializeField] GameObject effectParticles;
-    [SerializeField] GameObject effectSmoke;
-    [SerializeField] GameObject bulletHole;
+
 
 
     public event Action OnFlash;
@@ -49,18 +47,27 @@ public class ShotgunController : PlayerWeaponController
 
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                GameObject a = Instantiate(effectSmoke, hit.point, hit.transform.rotation);
-                Destroy(a, 2f);
-                GameObject bulletHoleClone = Instantiate(bulletHole, hit.point+hit.normal*0.001f, Quaternion.LookRotation(hit.normal));
-                Destroy(bulletHoleClone, 4f);
+                //
+                GameObject a = GameManager.instancePlayer.RequestSmoke();
+                a.SetActive(true);
+                a.transform.position = hit.point;
+                a.transform.rotation = hit.transform.rotation;
+                //
+                GameObject b = GameManager.instancePlayer.RequestBulletHole();
+                b.SetActive(true);
+                b.transform.position = hit.point+hit.normal*0.001f;
+                b.transform.rotation = Quaternion.LookRotation(hit.normal);
             }
-            
-            GameObject b = Instantiate(effectParticles, shootPoint.transform.position, shootPoint.transform.rotation);
-            //b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
-            Destroy(b, 1f);
-            GameObject c = Instantiate(cartridge, Recamara.transform.position, Recamara.transform.rotation);
-            c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.5f, ForceMode.Impulse);
-            Destroy(c, 1.5f); 
+            //
+            GameObject d = GameManager.instancePlayer.RequestFlash();
+            d.SetActive(true);
+            d.transform.position = shootPoint.transform.position;
+            d.transform.rotation = shootPoint.transform.rotation;
+            //
+            GameObject c = GameManager.instancePlayer.RequestCarShotgun();
+            c.SetActive(true);
+            c.transform.position = Recamara.transform.position; 
+            c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.8f, ForceMode.Impulse); 
 
             canShoot = false;
             timeShoot = 0;

@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 3895165343981775381}
   - component: {fileID: 1885362905755165127}
   - component: {fileID: 7163287559412886107}
+  - component: {fileID: 3636974453881938336}
   m_Layer: 0
   m_Name: cartridgeShootgun
   m_TagString: Untagged
@@ -262,3 +263,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3636974453881938336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176179605927935076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c008aaa111bae4592c1e40e96e44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyCartridge: 2

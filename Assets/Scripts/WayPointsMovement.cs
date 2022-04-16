@@ -47,7 +47,7 @@ public class WayPointsMovement : MonoBehaviour
             transform.position += direction * enemy.speedEnemy * Time.deltaTime;// y avanza
             Zombie.SetBool("ModePersecution", true);//solo activa animacion de persecucion
             Zombie.SetBool("WalkSlow", false);
-             Zombie.SetBool("Attack", false);
+            Zombie.SetBool("Attack", false);
 
         }
         else// y si esta muy lejos solo camina el recorrido de waypoints

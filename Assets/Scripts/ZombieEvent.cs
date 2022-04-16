@@ -13,17 +13,18 @@ public class ZombieEvent : MonoBehaviour
     [SerializeField] protected EnemyData enemy;
 
     [SerializeField] private Animator Zombie;     
-     [SerializeField] private GameObject player;
-     [SerializeField] public EnemyCollision zombieMove;
-     public float alpha;
+    [SerializeField] private GameObject player;
+    [SerializeField] public EnemyCollision zombieMove;
+    public float alpha;
     
 
     
     private void Awake()
     {
-     player = GameObject.Find("Player");
-     waypoints = GameObject.FindGameObjectsWithTag("Waypoins");
-     
+        
+    player = GameObject.Find("Player");
+    waypoints = GameObject.FindGameObjectsWithTag("Waypoins");
+    
     }
 
     
@@ -35,8 +36,6 @@ public class ZombieEvent : MonoBehaviour
             this.enabled=false;
         }
         
-        
-       
     }
 
 
@@ -49,7 +48,7 @@ public class ZombieEvent : MonoBehaviour
         if (deltaVector.magnitude <= enemy.attackPlayer) //a la distancia minima lo ataca
         {
             Zombie.SetBool("Attack", true);//activa animacion de ataque 
-          Zombie.SetBool("Persecution", false);
+            Zombie.SetBool("Persecution", false);
         }
         else if ((deltaVector.magnitude <= enemy.distancePlayer)&&(deltaVector.magnitude >= enemy.attackPlayer)) // El enemigo cambia a modo persecucion cuando sea poner la distancia al player pero no tanto, sino lo ataca
         {
@@ -68,7 +67,7 @@ public class ZombieEvent : MonoBehaviour
             transform.forward = Vector3.Lerp(transform.forward, directionB, enemy.rotationSpeed * Time.deltaTime);
             transform.position += transform.forward * enemy.speedEnemy * Time.deltaTime;
             transform.position += Vector3.down *alpha;
-           
+        
             Zombie.SetBool("Persecution", true);
             if (gamaVector.magnitude <= minimumDistance)
             {

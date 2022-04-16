@@ -259,10 +259,16 @@ MonoBehaviour:
   canShoot: 1
   timeShoot: 0
   shootCooldown: 0.8
-  bullet: {fileID: 3601694450764211607, guid: 10f26dbfc4e21a448a0d38de09686f5c, type: 3}
   shootPoint: {fileID: 898441123912481251}
+  Recamara: {fileID: 0}
   PlayerShooter: {fileID: 2961766248903084661}
   mira: {fileID: 0}
+  effectParticles: {fileID: 0}
+  effectSmoke: {fileID: 0}
+  bulletHole: {fileID: 0}
+  hittabletLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5830827151389314063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,6 +1479,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6981399806845737003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6148441981704109124, guid: c68d67272b66d644880b473522c3aa4c, type: 3}
+  m_PrefabInstance: {fileID: 3322480301726332465}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2844187292895445753}
+  m_Layer: 0
+  m_Name: 'New Prefab (Missing Prefab with guid: c68d67272b66d644880b473522c3aa4c)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2844187292895445753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 676462972273947848, guid: c68d67272b66d644880b473522c3aa4c, type: 3}
+  m_PrefabInstance: {fileID: 3322480301726332465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981399806845737003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1023945903288711430}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7131501095436822684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,8 +1917,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c68d67272b66d644880b473522c3aa4c, type: 3}
---- !u!4 &2844187292895445753 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 676462972273947848, guid: c68d67272b66d644880b473522c3aa4c, type: 3}
-  m_PrefabInstance: {fileID: 3322480301726332465}
-  m_PrefabAsset: {fileID: 0}

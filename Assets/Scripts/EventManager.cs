@@ -20,13 +20,13 @@ public class EventManager : MonoBehaviour
     {
         
     }
-     private void OnTriggerEnter(Collider other) {
-         if(other.gameObject.CompareTag("Player"))
-         {
-             OnEvent?.Invoke();
-             OnEvents?.Invoke();
-             Debug.Log("event");
-         }
-     }
-     
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            OnEvent?.Invoke();
+            OnEvents?.Invoke();
+            Debug.Log("event");
+        }
+    }
+
 }

@@ -6,20 +6,19 @@ using UnityEngine;
 
 public class GunController : PlayerWeaponController
 {
-    [SerializeField] private GameObject cartridge;
-    [SerializeField] private Transform Recamara;
+    
+    
     [SerializeField] private Transform shootPoint;
-    //private int gunAmmo;
-    //private int gunCharger;
+
+    [SerializeField] private Transform Recamara;
     private int placeCharger;
 
 
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
     [SerializeField] GameObject mira;
-    [SerializeField] GameObject effectParticles;
-    [SerializeField] GameObject effectSmoke;
-    [SerializeField] GameObject bulletHole;
+    
+
 
 
     public event Action OnFlash;
@@ -38,6 +37,8 @@ public class GunController : PlayerWeaponController
     }
     void Start()
     {
+        
+        
 
     }
     protected override void Fire()
@@ -52,18 +53,30 @@ public class GunController : PlayerWeaponController
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                GameObject a = Instantiate(effectSmoke, hit.point, hit.transform.rotation);
-                Destroy(a, 2f);
-                GameObject bulletHoleClone = Instantiate(bulletHole, hit.point+hit.normal*0.001f, Quaternion.LookRotation(hit.normal));
-                Destroy(bulletHoleClone, 4f);
+                GameObject a = GameManager.instancePlayer.RequestSmoke();
+                a.SetActive(true);
+                a.transform.position = hit.point;
+                a.transform.rotation = hit.transform.rotation;
+                //
+                GameObject b = GameManager.instancePlayer.RequestBulletHole();
+                b.SetActive(true);
+                b.transform.position = hit.point+hit.normal*0.001f;
+                b.transform.rotation = Quaternion.LookRotation(hit.normal);
             }
-            
-            GameObject b = Instantiate(effectParticles, shootPoint.transform.position, shootPoint.transform.rotation);
-            //b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 10f, ForceMode.Impulse);
-            Destroy(b, 1f);
-            GameObject c = Instantiate(cartridge, Recamara.transform.position, Recamara.transform.rotation);
+            //
+            GameObject d = GameManager.instancePlayer.RequestFlash();
+            d.SetActive(true);
+            d.transform.position = shootPoint.transform.position;
+            d.transform.rotation = shootPoint.transform.rotation;
+            //
+            GameObject c = GameManager.instancePlayer.RequestCartridge();
+            c.SetActive(true);
+            c.transform.position = Recamara.transform.position; 
             c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.8f, ForceMode.Impulse);
-            Destroy(c, 1.5f);            
+                        
+                    
+                    
+                            
             
 
             canShoot = false;
@@ -108,7 +121,7 @@ public class GunController : PlayerWeaponController
     {
         if(( GameManager.InstanceAmmoGun.gunAmmo > 0 ) && ( GameManager.InstanceAmmoGun.gunChargerAmmo < 17 ))
         {
-            //Debug.Log("anda");
+            //Debug.Log("anda!");
             PlayerShooter.SetBool("Reload", true);
             soundManager.SeleccionAudio(1, 0.5f);
             placeCharger = 17 - GameManager.InstanceAmmoGun.gunChargerAmmo;
@@ -131,6 +144,10 @@ public class GunController : PlayerWeaponController
         PlayerShooter.SetBool("Reload", false);
 
     }
+
+    
+
+    
 
 
     private void OnDrawGizmos()

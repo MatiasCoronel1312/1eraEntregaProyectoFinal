@@ -16,7 +16,7 @@ public class PlayerWeaponController : MonoBehaviour
     }
     void Update()
     {
-        if ((Input.GetKey(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
+        if ((Input.GetKeyDown(KeyCode.Mouse0)) && (Input.GetKey(KeyCode.Mouse1)))
         {
             Fire();
         }

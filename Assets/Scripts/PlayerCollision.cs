@@ -19,7 +19,7 @@ public class PlayerCollision : MonoBehaviour
     }
     
     private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("AttackEnemy"))
         {
             OnDamage?.Invoke();
             lifeBar.LifeCurrent-= damageAmount;
@@ -65,5 +65,16 @@ public class PlayerCollision : MonoBehaviour
             lifeBar.LifeCurrent+= 25;
             Destroy(other.gameObject);
             soundManager.SeleccionAudio(7, 0.2f);        }
+
+            if (other.gameObject.CompareTag("AttackEnemy"))
+        {
+            OnDamage?.Invoke();
+            lifeBar.LifeCurrent-= damageAmount;
+            if(lifeBar.LifeCurrent<=0)
+            {
+            Debug.Log("Game Over");
+            SceneManager.LoadScene("Nivel1");
+            }
+        }
     }
 }
