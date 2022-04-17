@@ -15,7 +15,7 @@ public class Zombie1 : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] Collider colliderAttack; 
     [SerializeField] Collider colliderBite; 
-    [SerializeField] public EnemyCollision zombieMove;
+    [SerializeField] public EnemyCollision enemyCollision;
 
     
 
@@ -25,6 +25,7 @@ public class Zombie1 : MonoBehaviour
     player = GameObject.Find("Player");
     rigidbody = GetComponent<Rigidbody>();
     //waypoints = GameObject.FindGameObjectsWithTag("Waypoins");
+    FindObjectOfType<EnemyCollision>().OnDeath += Death;
 
     
     
@@ -33,12 +34,7 @@ public class Zombie1 : MonoBehaviour
     
     void Update()
     {
-        Movement();
-        //IsGrounded();
-
-        if(zombieMove.isDeath){
-            this.enabled=false;
-        }
+        Movement();        
         
     }
 
@@ -51,18 +47,21 @@ public class Zombie1 : MonoBehaviour
         if (deltaVector.magnitude <= enemy.bitePlayer) 
         {
             Zombie.SetBool("NeckBite", true);
-            Zombie.SetBool("Attack", false);//activa animacion de ataque 
+            Zombie.SetBool("Attack", false);//activa animacion de mordida 
             Zombie.SetBool("Persecution", false);
             colliderBite.enabled=true;
             colliderAttack.enabled=false;
         }
-        else if ((deltaVector.magnitude <= enemy.attackPlayer)&&(deltaVector.magnitude >= enemy.bitePlayer)) //a la distancia minima lo ataca
+        else if ((deltaVector.magnitude <= enemy.attackPlayer)&&(deltaVector.magnitude >= enemy.bitePlayer)) 
         {
             rigidbody.MovePosition(transform.position + direction * enemy.speedEnemy * Time.deltaTime);
             Zombie.SetBool("NeckBite", false);
             Zombie.SetBool("Attack", true); //activa animacion de ataque 
             Zombie.SetBool("Persecution", false);
-            colliderAttack.enabled=true;
+            if(enemyCollision.haveArm)
+            {
+                colliderAttack.enabled=true;//
+            }
             colliderBite.enabled=false;
         }
         else //if ((deltaVector.magnitude <= enemy.distancePlayer)&&(deltaVector.magnitude >= enemy.attackPlayer)) // El enemigo cambia a modo persecucion cuando sea poner la distancia al player pero no tanto, sino lo ataca
@@ -106,29 +105,10 @@ public class Zombie1 : MonoBehaviour
         // }
     }
 
-    // private void IsGrounded()
-    // {
-    //     RaycastHit hit;
-    //     if (Physics.Raycast(transform.position, transform.forward, out hit, rangoRay))
-    //     {
-    //         transform.position -= Vector3.down * subir * Time.deltaTime;
-    //     }
-    //     RaycastHit hit2;
-    //     if (!Physics.Raycast(transform.position, transform.forward, out hit2, rangoRay2))
-    //     {
-    //         transform.position += Vector3.down * bajar * Time.deltaTime;
-    //     }
-    // }
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.blue;
-    //     Vector3 puntoB = transform.forward * rangoRay;
-    //     Gizmos.DrawRay(transform.position, puntoB);
     
-    //     Gizmos.color = Color.red;
-    //     Vector3 puntoC = transform.forward * rangoRay2;
-    //     Gizmos.DrawRay(transform.position, puntoC);
-    // }
+    private void Death(){
+        this.enabled=false;
+    }
 
 
 }

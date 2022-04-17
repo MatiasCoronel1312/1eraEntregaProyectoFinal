@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     //con este activo o desactivo cada arma, lo uso como script padre
     //con la tecla 1,2,y 3 se activa o desactiva la pistola ,el cuchillo y la escopeta
-    //mas adelante me gustaria agregar mas armas y obviamente sus funciones
+    //mas adelante me gustaria agregar mas armas 
     [SerializeField] GameObject[] weapons;
 
 

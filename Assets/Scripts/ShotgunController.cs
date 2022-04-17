@@ -47,16 +47,39 @@ public class ShotgunController : PlayerWeaponController
 
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                //
-                GameObject a = GameManager.instancePlayer.RequestSmoke();
-                a.SetActive(true);
-                a.transform.position = hit.point;
-                a.transform.rotation = hit.transform.rotation;
-                //
-                GameObject b = GameManager.instancePlayer.RequestBulletHole();
-                b.SetActive(true);
-                b.transform.position = hit.point+hit.normal*0.001f;
-                b.transform.rotation = Quaternion.LookRotation(hit.normal);
+                if (hit.collider.transform.gameObject.CompareTag("Enemy"))
+                {
+                    //
+                    GameObject a = GameManager.instancePlayer.RequestSmoke();
+                    a.SetActive(true);
+                    a.transform.position = hit.point;
+                    a.transform.rotation = hit.transform.rotation;
+                    //
+                    GameObject b = GameManager.instancePlayer.RequestBulletHole();
+                    b.SetActive(true);
+                    b.transform.position = hit.point + hit.normal * 0.001f;
+                    b.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
+
+
+                if (hit.collider.transform.gameObject.CompareTag("Head"))
+                {
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactShotgunHead();
+                }
+                if (hit.collider.transform.gameObject.CompareTag("BodyEnemy"))
+                {
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactShotgun();
+                }
+                if (hit.collider.transform.gameObject.CompareTag("ArmEnemy"))
+                {
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmRShotgun();
+                }
+                if (hit.collider.transform.gameObject.CompareTag("ArmEnemyLeft"))
+                {
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmLShotgun();
+                }
+
+
             }
             //
             GameObject d = GameManager.instancePlayer.RequestFlash();
@@ -66,8 +89,8 @@ public class ShotgunController : PlayerWeaponController
             //
             GameObject c = GameManager.instancePlayer.RequestCarShotgun();
             c.SetActive(true);
-            c.transform.position = Recamara.transform.position; 
-            c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.8f, ForceMode.Impulse); 
+            c.transform.position = Recamara.transform.position;
+            c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.8f, ForceMode.Impulse);
 
             canShoot = false;
             timeShoot = 0;
@@ -107,18 +130,21 @@ public class ShotgunController : PlayerWeaponController
 
     protected override void Reload()
     {
-        
-        if(( GameManager.InstanceAmmoGun.shotergunAmmo > 0 ) && ( GameManager.InstanceAmmoGun.shotergunChargerAmmo < 8 ))
+
+        if ((GameManager.InstanceAmmoGun.shotergunAmmo > 0) && (GameManager.InstanceAmmoGun.shotergunChargerAmmo < 8))
         {
             PlayerShotgun.SetBool("Reload", true);
             soundManager.SeleccionAudio(6, 0.6f);
             placeCharger = 8 - GameManager.InstanceAmmoGun.shotergunChargerAmmo;
-            if(GameManager.InstanceAmmoGun.shotergunAmmo>placeCharger){
-                GameManager.InstanceAmmoGun.shotergunAmmo-=placeCharger;
-                GameManager.InstanceAmmoGun.shotergunChargerAmmo+=placeCharger;
-            }else{
-                GameManager.InstanceAmmoGun.shotergunChargerAmmo+=GameManager.InstanceAmmoGun.shotergunAmmo;
-                GameManager.InstanceAmmoGun.shotergunAmmo=0;
+            if (GameManager.InstanceAmmoGun.shotergunAmmo > placeCharger)
+            {
+                GameManager.InstanceAmmoGun.shotergunAmmo -= placeCharger;
+                GameManager.InstanceAmmoGun.shotergunChargerAmmo += placeCharger;
+            }
+            else
+            {
+                GameManager.InstanceAmmoGun.shotergunChargerAmmo += GameManager.InstanceAmmoGun.shotergunAmmo;
+                GameManager.InstanceAmmoGun.shotergunAmmo = 0;
             }
 
         }

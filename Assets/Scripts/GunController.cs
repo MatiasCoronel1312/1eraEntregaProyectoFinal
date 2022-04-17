@@ -53,15 +53,35 @@ public class GunController : PlayerWeaponController
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                GameObject a = GameManager.instancePlayer.RequestSmoke();
-                a.SetActive(true);
-                a.transform.position = hit.point;
-                a.transform.rotation = hit.transform.rotation;
-                //
-                GameObject b = GameManager.instancePlayer.RequestBulletHole();
-                b.SetActive(true);
-                b.transform.position = hit.point+hit.normal*0.001f;
-                b.transform.rotation = Quaternion.LookRotation(hit.normal);
+                if (hit.collider.transform.gameObject.CompareTag("Enemy"))
+                {
+                    //
+                    GameObject a = GameManager.instancePlayer.RequestSmoke();
+                    a.SetActive(true);
+                    a.transform.position = hit.point;
+                    a.transform.rotation = hit.transform.rotation;
+                    //
+                    GameObject b = GameManager.instancePlayer.RequestBulletHole();
+                    b.SetActive(true);
+                    b.transform.position = hit.point+hit.normal*0.001f;
+                    b.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
+                
+                
+                if(hit.collider.transform.gameObject.CompareTag("Head")){
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactGunHead();
+                }
+                if(hit.collider.transform.gameObject.CompareTag("BodyEnemy")){
+                    
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactGun();
+                }
+                if(hit.collider.transform.gameObject.CompareTag("ArmEnemy")){
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmRGun();
+                }
+                if(hit.collider.transform.gameObject.CompareTag( "ArmEnemyLeft")){
+                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmLGun();
+                }
+                
             }
             //
             GameObject d = GameManager.instancePlayer.RequestFlash();

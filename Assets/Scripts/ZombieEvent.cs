@@ -32,9 +32,9 @@ public class ZombieEvent : MonoBehaviour
     {
         Movement();
 
-        if(zombieMove.isDeath){
-            this.enabled=false;
-        }
+        // if(zombieMove.isDeath){
+        //     this.enabled=false;
+        // }
         
     }
 

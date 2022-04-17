@@ -17,6 +17,11 @@ TagManager:
   - RayPoint
   - RayPoint2
   - AttackEnemy
+  - Knife
+  - Head
+  - BodyEnemy
+  - ArmEnemy
+  - ArmEnemyLeft
   layers:
   - Default
   - TransparentFX

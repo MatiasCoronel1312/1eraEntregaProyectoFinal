@@ -45,9 +45,9 @@ public class Zombie2 : MonoBehaviour
     void Update()
     {
         Movement();
-        if(zombieMove.isDeath){
-            this.enabled=false;
-        }
+        // if(zombieMove.isDeath){
+        //     this.enabled=false;
+        // }
         IsGrounder();
         
     }

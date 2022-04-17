@@ -27,6 +27,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SmokeParticles;
 
 
+    //ENEMY
+
+    [SerializeField] private List<GameObject> bloodList;//
+    [SerializeField] private Transform ContenedorEnemy;//
+    [SerializeField] private int bloodPool; //cantidad de Particula Sangre
+    [SerializeField] private GameObject blood;
+    [SerializeField] private List<GameObject> meltingList;//
+    [SerializeField] private GameObject melting;
+
+
+
+
     
 
     public int gunAmmo =0;
@@ -60,6 +72,8 @@ public class GameManager : MonoBehaviour
         AddBulletHoleToPool(cartridgePool);
         AddFlashToPool(cartridgePool);
         AddSmokeToPool(cartridgePool);
+        AddBloodToPool(bloodPool);
+        AddMeltingToPool(bloodPool);
     }
 
 
@@ -120,6 +134,28 @@ public class GameManager : MonoBehaviour
             c.SetActive(false);
             bulletHoleList.Add(c);
             c.transform.parent= Recamara; 
+        }
+    }
+
+    private void AddBloodToPool(int amount)
+    {
+        for(int i =0; i<amount; i++)
+        {
+            GameObject c = Instantiate(blood);
+            c.SetActive(false);
+            bloodList.Add(c);
+            c.transform.parent= ContenedorEnemy; 
+        }
+    }
+
+    private void AddMeltingToPool(int amount)
+    {
+        for(int i =0; i<amount; i++)
+        {
+            GameObject c = Instantiate(melting);
+            c.SetActive(false);
+            meltingList.Add(c);
+            c.transform.parent= ContenedorEnemy; 
         }
     }
 
@@ -189,6 +225,35 @@ public class GameManager : MonoBehaviour
             if(!bulletHoleList[i].activeInHierarchy)
             {
                 return bulletHoleList[i];
+            }
+            
+        }
+            return null;
+    }
+
+    public GameObject RequestBlood()
+    {
+            
+
+        for(int i =0 ; i < bloodList.Count ; i++)
+        {
+            if(!bloodList[i].activeInHierarchy)
+            {
+                return bloodList[i];
+            }
+            
+        }
+            return null;
+    }
+    public GameObject RequestMelting()
+    {
+            
+
+        for(int i =0 ; i < meltingList.Count ; i++)
+        {
+            if(!meltingList[i].activeInHierarchy)
+            {
+                return meltingList[i];
             }
             
         }
