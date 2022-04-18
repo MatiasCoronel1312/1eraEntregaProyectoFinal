@@ -9,12 +9,13 @@ public class Checkpoint1 : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     private bool spawnEnemy = true;
 
-    public float timeSapwn;
+    [SerializeField] public float timeSpawn;
     
 private void OnTriggerExit(Collider other) {
         
         if ((other.gameObject.CompareTag("Player"))&&(spawnEnemy))
         {
+            spawnEnemy=false;
             StartCoroutine(Spawn());            
 
         }
@@ -22,10 +23,17 @@ private void OnTriggerExit(Collider other) {
 
 IEnumerator Spawn()
     {
-        Instantiate(zombies, spawnPoint.transform.position, zombies.transform.rotation);       
-        yield return new WaitForSeconds(timeSapwn); 
-        Instantiate(zombies, spawnPoint.transform.position, zombies.transform.rotation);        
-        spawnEnemy=false;
+        SpawnEnemy();       
+        yield return new WaitForSeconds(timeSpawn); 
+        SpawnEnemy();        
+        
+    }
+
+    private void SpawnEnemy(){
+        GameObject b = GameManager.instancePlayer.RequestEnemy();
+        b.SetActive(true);
+        b.transform.position = spawnPoint.transform.position;
+        b.transform.rotation = transform.rotation;
     }
 
 

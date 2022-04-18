@@ -9,6 +9,7 @@ public class PlayerCollision : MonoBehaviour
     public event Action OnDamage;
     public LifePlayer lifeBar;
     public float damageAmount = 2f ;
+    [SerializeField] private GameObject wound;
 
     [Header("Audio")]
     private SoundManagerPlayer soundManager;
@@ -18,21 +19,22 @@ public class PlayerCollision : MonoBehaviour
         soundManager = FindObjectOfType<SoundManagerPlayer>();
     }
     
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.CompareTag("AttackEnemy"))
-        {
-            OnDamage?.Invoke();
-            lifeBar.LifeCurrent-= damageAmount;
-            if(lifeBar.LifeCurrent<=0)
-            {
-            Debug.Log("Game Over");
-            SceneManager.LoadScene("Nivel1");
-            }
-        }
+    // private void OnCollisionEnter(Collision other) {
+    //     if (other.gameObject.CompareTag("AttackEnemy"))
+    //     {
+            
+    //         OnDamage?.Invoke();
+    //         lifeBar.LifeCurrent-= damageAmount;
+    //         if(lifeBar.LifeCurrent<=0)
+    //         {
+    //         Debug.Log("Game Over");
+    //         SceneManager.LoadScene("Nivel1");
+    //         }
+    //     }
         
 
         
-    }
+    // }
 
     private void OnTriggerEnter(Collider other) {
         
@@ -68,6 +70,10 @@ public class PlayerCollision : MonoBehaviour
 
             if (other.gameObject.CompareTag("AttackEnemy"))
         {
+            GameObject b = GameManager.instancePlayer.RequestBlood();
+            b.SetActive(true);
+            b.transform.position = wound.transform.position;
+            b.transform.rotation = wound.transform.rotation;
             OnDamage?.Invoke();
             lifeBar.LifeCurrent-= damageAmount;
             if(lifeBar.LifeCurrent<=0)

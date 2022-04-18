@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie1 : MonoBehaviour
+public class ZombieAligator : MonoBehaviour
 {
 
-    private new Rigidbody rigidbody;
+    //private new Rigidbody rigidbody;
     //[SerializeField] public GameObject [] waypoints;
     //private int currentIndex = 0;
     //[SerializeField] float minimumDistance;
@@ -23,7 +23,7 @@ public class Zombie1 : MonoBehaviour
     private void Awake()
     {
     player = GameObject.Find("Player");
-    rigidbody = GetComponent<Rigidbody>();
+    //rigidbody = GetComponent<Rigidbody>();
     //waypoints = GameObject.FindGameObjectsWithTag("Waypoins");
     FindObjectOfType<EnemyCollision>().OnDeath += Death;
 
@@ -54,7 +54,7 @@ public class Zombie1 : MonoBehaviour
         }
         else if ((deltaVector.magnitude <= enemy.attackPlayer)&&(deltaVector.magnitude >= enemy.bitePlayer)) 
         {
-            rigidbody.MovePosition(transform.position + direction * enemy.speedEnemy * Time.deltaTime);
+            transform.position += transform.forward * enemy.speedEnemy * Time.deltaTime;
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             Zombie.SetBool("NeckBite", false);
             Zombie.SetBool("Attack", true); //activa animacion de ataque 
@@ -69,8 +69,9 @@ public class Zombie1 : MonoBehaviour
         {
             //transform.forward = Vector3.Lerp(transform.forward, direction, enemy.rotationSpeed * Time.deltaTime); // copia su angulo del player
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-            rigidbody.MovePosition(transform.position + direction * enemy.speedEnemy * Time.deltaTime); // y avanza
+            //rigidbody.MovePosition(transform.position + direction * enemy.speedEnemy * Time.deltaTime); // y avanza
             
+            transform.position += transform.forward * enemy.speedEnemy * Time.deltaTime;
             Zombie.SetBool("Persecution", true); //solo activa animacion de persecucion            
             Zombie.SetBool("NeckBite", false);
             Zombie.SetBool("Attack", false);

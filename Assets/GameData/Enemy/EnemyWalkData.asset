@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 157a10eef37ab134c9fecee40abcc784, type: 3}
-  m_Name: EnemyEvent
+  m_Name: EnemyWalkData
   m_EditorClassIdentifier: 
   rotationSpeed: 2
   speedEnemy: 0.45

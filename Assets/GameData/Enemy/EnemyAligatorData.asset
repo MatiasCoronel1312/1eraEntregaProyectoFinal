@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 157a10eef37ab134c9fecee40abcc784, type: 3}
-  m_Name: New Enemy Data
+  m_Name: EnemyAligatorData
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  speedEnemy: 0.45
+  speedEnemy: 1.5
   distancePlayer: 10
-  attackPlayer: 1
-  bitePlayer: 0.5
+  attackPlayer: 1.3
+  bitePlayer: 1

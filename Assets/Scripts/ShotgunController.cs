@@ -47,7 +47,7 @@ public class ShotgunController : PlayerWeaponController
 
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                if (hit.collider.transform.gameObject.CompareTag("Enemy"))
+                if (!hit.collider.transform.gameObject.CompareTag("Enemy"))
                 {
                     //
                     GameObject a = GameManager.instancePlayer.RequestSmoke();

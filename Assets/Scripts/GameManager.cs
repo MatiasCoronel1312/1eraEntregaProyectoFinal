@@ -35,10 +35,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject blood;
     [SerializeField] private List<GameObject> meltingList;//
     [SerializeField] private GameObject melting;
+    [SerializeField] private List<GameObject> enemyList;//
+    [SerializeField] private int enemyPool; //cantidad de Enemigos
+    [SerializeField] private GameObject enemy;
 
 
 
-
+    [Header("Ammo Current")]
     
 
     public int gunAmmo =0;
@@ -74,6 +77,7 @@ public class GameManager : MonoBehaviour
         AddSmokeToPool(cartridgePool);
         AddBloodToPool(bloodPool);
         AddMeltingToPool(bloodPool);
+        AddEnemyToPool(enemyPool);
     }
 
 
@@ -158,6 +162,22 @@ public class GameManager : MonoBehaviour
             c.transform.parent= ContenedorEnemy; 
         }
     }
+
+
+
+
+private void AddEnemyToPool(int amount)
+    {
+        for(int i =0; i<amount; i++)
+        {
+            GameObject e = Instantiate(enemy);
+            e.SetActive(false);
+            enemyList.Add(e);
+            e.transform.parent= ContenedorEnemy; 
+        }
+    }
+
+
 
     public GameObject RequestCartridge()
     {
@@ -254,6 +274,23 @@ public class GameManager : MonoBehaviour
             if(!meltingList[i].activeInHierarchy)
             {
                 return meltingList[i];
+            }
+            
+        }
+            return null;
+    }
+
+
+
+    public GameObject RequestEnemy()
+    {
+            
+
+        for(int i =0 ; i < enemyList.Count ; i++)
+        {
+            if(!enemyList[i].activeInHierarchy)
+            {
+                return enemyList[i];
             }
             
         }

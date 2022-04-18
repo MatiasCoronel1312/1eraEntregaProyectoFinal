@@ -32,8 +32,7 @@ public class GunController : PlayerWeaponController
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManagerPlayer>();
-        //gunCharger = GameManager.InstanceAmmoGun.gunChargerAmmo;
-        //gunAmmo = GameManager.InstanceAmmoGun.gunAmmo;
+
     }
     void Start()
     {
@@ -53,7 +52,7 @@ public class GunController : PlayerWeaponController
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                if (hit.collider.transform.gameObject.CompareTag("Enemy"))
+                if (!hit.collider.transform.gameObject.CompareTag("Enemy"))
                 {
                     //
                     GameObject a = GameManager.instancePlayer.RequestSmoke();
