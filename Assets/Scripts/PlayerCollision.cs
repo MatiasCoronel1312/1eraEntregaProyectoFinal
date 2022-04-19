@@ -54,7 +54,7 @@ public class PlayerCollision : MonoBehaviour
             Destroy(other.gameObject);
             soundManager.SeleccionAudio(7, 0.2f);        }
 
-            if (other.gameObject.CompareTag("AttackEnemy"))
+            if (other.gameObject.CompareTag("Head")||other.gameObject.CompareTag("ArmEnemy")||other.gameObject.CompareTag("ArmEnemyLeft"))
         {
             GameObject b = GameManager.instancePlayer.RequestBlood();
             b.SetActive(true);

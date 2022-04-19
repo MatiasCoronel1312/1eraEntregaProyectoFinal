@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class SpawnEnemies : MonoBehaviour
+public class SpawnEnemyRun : MonoBehaviour
 {
 
     [SerializeField] Transform spawnPoint;
@@ -33,7 +32,7 @@ IEnumerator Spawn()
     }
 
     private void SpawnEnemy(){
-        GameObject b = GameManager.instancePlayer.RequestEnemy();
+        GameObject b = GameManager.instancePlayer.RequestEnemyRun();
         b.SetActive(true);
         b.transform.position = spawnPoint.transform.position;
         b.transform.rotation = transform.rotation;

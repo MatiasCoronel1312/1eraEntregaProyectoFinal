@@ -13,9 +13,7 @@ public class ZombieAligator : MonoBehaviour
     [SerializeField] protected EnemyData enemy;
     [SerializeField] private Animator Zombie;     
     [SerializeField] private GameObject player;
-    [SerializeField] Collider colliderAttack; 
-    [SerializeField] Collider colliderBite; 
-    [SerializeField] public EnemyCollision enemyCollision;
+    
 
     
 
@@ -28,9 +26,7 @@ public class ZombieAligator : MonoBehaviour
     FindObjectOfType<EnemyCollision>().OnDeath += Death;    
     }
 
-    private void OnEnable() {
-        this.enabled=true;//Muy importante,volver a activar el script al reinstanciar al enemigo
-    }
+ 
     void Update()
     {
         Movement();    
@@ -39,6 +35,9 @@ public class ZombieAligator : MonoBehaviour
 
     private void Movement()
     {
+        if(player==null){
+            return;
+        }
         Vector3 deltaVector = player.transform.position - transform.position;
         Vector3 direction = deltaVector.normalized;
 
@@ -47,21 +46,17 @@ public class ZombieAligator : MonoBehaviour
             Zombie.SetBool("NeckBite", true);
             Zombie.SetBool("Attack", false);//activa animacion de mordida 
             Zombie.SetBool("Persecution", false);
-            colliderBite.enabled=true;
-            colliderAttack.enabled=false;
+            transform.position += transform.forward * enemy.speedEnemy*0.2f * Time.deltaTime;
+
         }
         else if ((deltaVector.magnitude <= enemy.attackPlayer)&&(deltaVector.magnitude >= enemy.bitePlayer)) 
         {
-            transform.position += transform.forward * enemy.speedEnemy * Time.deltaTime;
+            transform.position += transform.forward * enemy.speedEnemy*0.4f * Time.deltaTime;
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             Zombie.SetBool("NeckBite", false);
             Zombie.SetBool("Attack", true); //activa animacion de ataque 
             Zombie.SetBool("Persecution", false);
-            if(enemyCollision.haveArm)
-            {
-                colliderAttack.enabled=true;//
-            }
-            colliderBite.enabled=false;
+
         }
         else //if ((deltaVector.magnitude <= enemy.distancePlayer)&&(deltaVector.magnitude >= enemy.attackPlayer)) // El enemigo cambia a modo persecucion cuando sea poner la distancia al player pero no tanto, sino lo ataca
         {
@@ -73,8 +68,7 @@ public class ZombieAligator : MonoBehaviour
             Zombie.SetBool("Persecution", true); //solo activa animacion de persecucion            
             Zombie.SetBool("NeckBite", false);
             Zombie.SetBool("Attack", false);
-            colliderAttack.enabled=false;
-            colliderBite.enabled=false;
+
 
         }
         // else// y si esta muy lejos solo camina el recorrido de waypoints

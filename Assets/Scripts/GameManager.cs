@@ -36,8 +36,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> meltingList;//
     [SerializeField] private GameObject melting;
     [SerializeField] private List<GameObject> enemyList;//
-    [SerializeField] private int enemyPool; //cantidad de Enemigos
+    [SerializeField] private int enemyPool; //cantidad de Enemigos base
     [SerializeField] private GameObject enemy;
+    [SerializeField] private List<GameObject> enemyRunList;//
+    [SerializeField] private int enemyRunPool; //cantidad de Enemigos Run
+    [SerializeField] private GameObject enemyRun;
+    [SerializeField] private List<GameObject> enemyAligatorList;//
+    [SerializeField] private int enemyAligatorPool; //cantidad de Enemigos Aligator
+    [SerializeField] private GameObject enemyAligator;
 
 
 
@@ -78,6 +84,8 @@ public class GameManager : MonoBehaviour
         AddBloodToPool(bloodPool);
         AddMeltingToPool(bloodPool);
         AddEnemyToPool(enemyPool);
+        AddEnemyRunToPool(enemyRunPool);
+        AddEnemyAligatorToPool(enemyAligatorPool);
     }
 
 
@@ -173,6 +181,30 @@ private void AddEnemyToPool(int amount)
             GameObject e = Instantiate(enemy);
             e.SetActive(false);
             enemyList.Add(e);
+            e.transform.parent= ContenedorEnemy; 
+        }
+    }
+
+
+    private void AddEnemyRunToPool(int amount)
+    {
+        for(int i =0; i<amount; i++)
+        {
+            GameObject e = Instantiate(enemyRun);
+            e.SetActive(false);
+            enemyRunList.Add(e);
+            e.transform.parent= ContenedorEnemy; 
+        }
+    }
+
+
+    private void AddEnemyAligatorToPool(int amount)
+    {
+        for(int i =0; i<amount; i++)
+        {
+            GameObject e = Instantiate(enemyAligator);
+            e.SetActive(false);
+            enemyAligatorList.Add(e);
             e.transform.parent= ContenedorEnemy; 
         }
     }
@@ -291,6 +323,36 @@ private void AddEnemyToPool(int amount)
             if(!enemyList[i].activeInHierarchy)
             {
                 return enemyList[i];
+            }
+            
+        }
+            return null;
+    }
+
+
+    public GameObject RequestEnemyAligator()
+    {
+            
+
+        for(int i =0 ; i < enemyAligatorList.Count ; i++)
+        {
+            if(!enemyAligatorList[i].activeInHierarchy)
+            {
+                return enemyAligatorList[i];
+            }
+            
+        }
+            return null;
+    }
+    public GameObject RequestEnemyRun()
+    {
+            
+
+        for(int i =0 ; i < enemyRunList.Count ; i++)
+        {
+            if(!enemyRunList[i].activeInHierarchy)
+            {
+                return enemyRunList[i];
             }
             
         }

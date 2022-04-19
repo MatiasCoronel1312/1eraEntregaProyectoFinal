@@ -23,6 +23,7 @@ TagManager:
   - ArmEnemy
   - ArmEnemyLeft
   - Text
+  - Plataforma
   layers:
   - Default
   - TransparentFX

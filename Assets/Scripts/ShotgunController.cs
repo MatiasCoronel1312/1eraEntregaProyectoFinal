@@ -47,7 +47,7 @@ public class ShotgunController : PlayerWeaponController
 
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                if ((!hit.collider.transform.gameObject.CompareTag("Enemy"))&&(!hit.collider.transform.gameObject.CompareTag("Head")) &&(!hit.collider.transform.gameObject.CompareTag("BodyEnemy"))&&(!hit.collider.transform.gameObject.CompareTag("ArmEnemy"))&&(!hit.collider.transform.gameObject.CompareTag( "ArmEnemyLeft"))&&(!hit.collider.transform.gameObject.CompareTag( "AttackEnemy")))
+                if (hit.collider.transform.gameObject.CompareTag("Plataforma"))
                 {
                     //
                     GameObject a = GameManager.instancePlayer.RequestSmoke();
@@ -64,19 +64,19 @@ public class ShotgunController : PlayerWeaponController
 
                 if (hit.collider.transform.gameObject.CompareTag("Head"))
                 {
-                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactShotgunHead();
+                    hit.collider.transform.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactShotgunHead();
                 }
                 if (hit.collider.transform.gameObject.CompareTag("BodyEnemy"))
                 {
-                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactShotgun();
+                    hit.collider.transform.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactShotgun();
                 }
                 if (hit.collider.transform.gameObject.CompareTag("ArmEnemy"))
                 {
-                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmRShotgun();
+                    hit.collider.transform.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmRShotgun();
                 }
                 if (hit.collider.transform.gameObject.CompareTag("ArmEnemyLeft"))
                 {
-                    hit.collider.transform.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmLShotgun();
+                    hit.collider.transform.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmLShotgun();
                 }
 
 

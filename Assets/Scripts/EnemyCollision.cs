@@ -11,9 +11,7 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] private int LifeEnemy = 3;
     [SerializeField] private int LifeArmL = 3;
     [SerializeField] private int LifeArmR = 3;
-    [SerializeField] public bool haveArm = true;
-    [SerializeField] private bool haveArmR = true;
-    [SerializeField] private bool haveArmL = true;
+
     [SerializeField] private Animator Zombie;
     [SerializeField] GameObject head;
     [SerializeField] GameObject neck;
@@ -41,9 +39,7 @@ public class EnemyCollision : MonoBehaviour
         foreArmLeft.SetActive(true);
         armLeft.SetActive(true);
         head.SetActive(true);
-        haveArm = true;
-        haveArmR = true;
-        haveArmL = true;
+
     }
 
     public void BulletImpactGunHead(){
@@ -72,10 +68,6 @@ public class EnemyCollision : MonoBehaviour
         if(LifeArmR<1){
             foreArmRight.SetActive(false);
             armRight.SetActive(false);
-            haveArmR=false;
-            if(!haveArmL&&!haveArmR){
-                haveArm=false;
-            }
         }
     }
     public void BulletImpactArmLGun(){
@@ -84,29 +76,18 @@ public class EnemyCollision : MonoBehaviour
         if(LifeArmL<1){
             foreArmLeft.SetActive(false);
             armLeft.SetActive(false);
-            haveArmL=false;
-            if(!haveArmL&&!haveArmR){
-                haveArm=false;
-            }
+        
         }
     }
     public void BulletImpactArmRShotgun(){
             BulletImpactArmRight();
             foreArmRight.SetActive(false);
             armRight.SetActive(false);
-            haveArmR=false;
-            if(!haveArmL&&!haveArmR){
-                haveArm=false;
-            }
     }
     public void BulletImpactArmLShotgun(){
             BulletImpactArmLeft();
             foreArmLeft.SetActive(false);
-            armLeft.SetActive(false);
-            haveArmL=false;
-            if(!haveArmL&&!haveArmR){
-                haveArm=false;
-            }        
+            armLeft.SetActive(false);       
     }
 
     public void BulletImpact(){
