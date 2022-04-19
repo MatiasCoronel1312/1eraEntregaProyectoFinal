@@ -23,6 +23,7 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] GameObject foreArmRight;
     [SerializeField] GameObject armLeft;
     [SerializeField] GameObject foreArmLeft;
+    
 
     private void Awake() {
         player = GameObject.Find("Player");
@@ -30,6 +31,7 @@ public class EnemyCollision : MonoBehaviour
     }
 
     private void OnEnable() {
+
         LifeEnemy=3;
         LifeArmL = 3;
         LifeArmR = 3;

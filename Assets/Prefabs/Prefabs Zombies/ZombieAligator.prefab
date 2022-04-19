@@ -704,6 +704,19 @@ MonoBehaviour:
   colliderAttack: {fileID: 6578036297983398708}
   colliderBite: {fileID: 622464998362205176}
   enemyCollision: {fileID: 4844024658722078411}
+--- !u!114 &8492873084795517540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871125626766003566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016c8030f1a2d7646b256318bc3c2fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombie: {fileID: 1871125626766003566}
 --- !u!136 &4398792684884357503
 CapsuleCollider:
   m_ObjectHideFlags: 0

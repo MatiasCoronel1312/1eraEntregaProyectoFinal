@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Checkpoint1 : MonoBehaviour
+public class SpawnEnemies : MonoBehaviour
 {
     [SerializeField] GameObject zombies;
     [SerializeField] Transform spawnPoint;
     private bool spawnEnemy = true;
 
-    [SerializeField] public float timeSpawn;
+    [SerializeField] private float timeSpawn;
+    [SerializeField] private int enemies;
     
 private void OnTriggerExit(Collider other) {
         
@@ -23,9 +24,11 @@ private void OnTriggerExit(Collider other) {
 
 IEnumerator Spawn()
     {
+        for(int i=0; i < enemies ; i++)
+        {
         SpawnEnemy();       
         yield return new WaitForSeconds(timeSpawn); 
-        SpawnEnemy();        
+        }
         
     }
 

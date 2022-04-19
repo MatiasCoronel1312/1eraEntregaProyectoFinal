@@ -47,7 +47,7 @@ public class ShotgunController : PlayerWeaponController
 
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                if (!hit.collider.transform.gameObject.CompareTag("Enemy"))
+                if ((!hit.collider.transform.gameObject.CompareTag("Enemy"))&&(!hit.collider.transform.gameObject.CompareTag("Head")) &&(!hit.collider.transform.gameObject.CompareTag("BodyEnemy"))&&(!hit.collider.transform.gameObject.CompareTag("ArmEnemy"))&&(!hit.collider.transform.gameObject.CompareTag( "ArmEnemyLeft"))&&(!hit.collider.transform.gameObject.CompareTag( "AttackEnemy")))
                 {
                     //
                     GameObject a = GameManager.instancePlayer.RequestSmoke();

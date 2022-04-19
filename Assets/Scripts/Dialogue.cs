@@ -5,7 +5,7 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    //[SerializeField] private GameObject icon;
+
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4,6)] private string[] dialogueLines;
@@ -15,7 +15,9 @@ public class Dialogue : MonoBehaviour
     private int lineIndex;
 
     private void Update() {
-        if(isPlayerInRange && (Input.GetKeyDown(KeyCode.Return)) ){
+
+        if ((Input.GetKeyDown(KeyCode.Return)) && (isPlayerInRange))
+        {
             if(!didDialogueStart)
             {
                 StartDialogue();
@@ -64,7 +66,7 @@ public class Dialogue : MonoBehaviour
 private void OnTriggerEnter(Collider other) {
     if (other.gameObject.CompareTag("Player")){
         isPlayerInRange=true;
-
+        dialoguePanel.SetActive(true);
     }
     
 }

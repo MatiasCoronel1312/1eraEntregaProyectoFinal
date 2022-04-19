@@ -25,17 +25,15 @@ public class ZombieAligator : MonoBehaviour
     player = GameObject.Find("Player");
     //rigidbody = GetComponent<Rigidbody>();
     //waypoints = GameObject.FindGameObjectsWithTag("Waypoins");
-    FindObjectOfType<EnemyCollision>().OnDeath += Death;
-
-    
-    
+    FindObjectOfType<EnemyCollision>().OnDeath += Death;    
     }
 
-    
+    private void OnEnable() {
+        this.enabled=true;//Muy importante,volver a activar el script al reinstanciar al enemigo
+    }
     void Update()
     {
-        Movement();        
-        
+        Movement();    
     }
 
 

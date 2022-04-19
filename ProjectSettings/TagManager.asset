@@ -22,6 +22,7 @@ TagManager:
   - BodyEnemy
   - ArmEnemy
   - ArmEnemyLeft
+  - Text
   layers:
   - Default
   - TransparentFX

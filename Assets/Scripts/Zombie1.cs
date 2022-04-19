@@ -25,17 +25,17 @@ public class Zombie1 : MonoBehaviour
     player = GameObject.Find("Player");
     rigidbody = GetComponent<Rigidbody>();
     //waypoints = GameObject.FindGameObjectsWithTag("Waypoins");
-    FindObjectOfType<EnemyCollision>().OnDeath += Death;
-
-    
-    
+    FindObjectOfType<EnemyCollision>().OnDeath += Death;    
     }
 
-    
+    private void OnEnable() {
+        
+        this.enabled=true;//Muy importante,volver a activar el script al reinstanciar al enemigo
+        Debug.Log("activar");
+    }
     void Update()
     {
-        Movement();        
-        
+        Movement();       
     }
 
 
@@ -110,6 +110,7 @@ public class Zombie1 : MonoBehaviour
     
     private void Death(){
         this.enabled=false;
+        Debug.Log("desactivar");
     }
 
 

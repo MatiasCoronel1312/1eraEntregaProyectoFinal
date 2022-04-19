@@ -679,6 +679,8 @@ MonoBehaviour:
   LifeArmL: 3
   LifeArmR: 3
   haveArm: 1
+  haveArmR: 1
+  haveArmL: 1
   Zombie: {fileID: 4694660394042970631}
   head: {fileID: 1471994384439602450}
   neck: {fileID: 3504623042917245011}
@@ -688,6 +690,19 @@ MonoBehaviour:
   foreArmRight: {fileID: 1203977584878481025}
   armLeft: {fileID: 5353837062677335443}
   foreArmLeft: {fileID: 467498844665609711}
+--- !u!114 &8223183626549903781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871125626766003566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ecb6aa50b4c1f498059f9f3a3f2a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombie: {fileID: 1871125626766003566}
 --- !u!114 &9069769213829660043
 MonoBehaviour:
   m_ObjectHideFlags: 0

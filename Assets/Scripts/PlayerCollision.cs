@@ -20,27 +20,13 @@ public class PlayerCollision : MonoBehaviour
     }
     
     // private void OnCollisionEnter(Collision other) {
-    //     if (other.gameObject.CompareTag("AttackEnemy"))
-    //     {
-            
-    //         OnDamage?.Invoke();
-    //         lifeBar.LifeCurrent-= damageAmount;
-    //         if(lifeBar.LifeCurrent<=0)
-    //         {
-    //         Debug.Log("Game Over");
-    //         SceneManager.LoadScene("Nivel1");
-    //         }
-    //     }
-        
 
-        
     // }
 
     private void OnTriggerEnter(Collider other) {
         
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            //Debug.Log(other.gameObject.name);
             CheckpointsManager managerCP = other.transform.parent.GetComponent<CheckpointsManager>();
             managerCP.FindCheckPoint(other.gameObject.name);
         }
