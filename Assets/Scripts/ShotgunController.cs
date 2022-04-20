@@ -8,6 +8,7 @@ public class ShotgunController : PlayerWeaponController
 
     [SerializeField] private Transform Recamara;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform boquilla;
     private int placeCharger;
 
 
@@ -84,8 +85,8 @@ public class ShotgunController : PlayerWeaponController
             //
             GameObject d = GameManager.instancePlayer.RequestFlash();
             d.SetActive(true);
-            d.transform.position = shootPoint.transform.position;
-            d.transform.rotation = shootPoint.transform.rotation;
+            d.transform.position = boquilla.transform.position;
+            d.transform.rotation = boquilla.transform.rotation;
             //
             GameObject c = GameManager.instancePlayer.RequestCarShotgun();
             c.SetActive(true);

@@ -1760,12 +1760,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8713fffe90ee1ea4ea83ee47ed2bae6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5005ed1c80245ff4dbacf13a8142cfa5, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.62352943}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9, y: 4.8}
+  m_Size: {x: 1.91, y: 1.88}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1779,8 +1779,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158952894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.039, z: 3.87}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0.001, y: -0, z: 0.4}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 573870150}
   m_RootOrder: 1
@@ -3570,6 +3570,11 @@ Transform:
   m_Father: {fileID: 1836595437}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &345300790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 898441123912481251, guid: 265f8daecadc9ce4fb5d799addf4d42d, type: 3}
+  m_PrefabInstance: {fileID: 1804782962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &354239950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013872234864, guid: da5894b154be11342a3fcfc401f7b4aa, type: 3}
@@ -20279,6 +20284,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1646047065}
     - target: {fileID: 4230570248647883933, guid: 265f8daecadc9ce4fb5d799addf4d42d, type: 3}
+      propertyPath: boquilla
+      value: 
+      objectReference: {fileID: 345300790}
+    - target: {fileID: 4230570248647883933, guid: 265f8daecadc9ce4fb5d799addf4d42d, type: 3}
       propertyPath: maxForce
       value: 50
       objectReference: {fileID: 0}
@@ -20294,6 +20303,10 @@ PrefabInstance:
       propertyPath: bulletHole
       value: 
       objectReference: {fileID: 2837622195604789724, guid: ed7b83d06833e884cb7a370a71c3efe6, type: 3}
+    - target: {fileID: 4230570248647883933, guid: 265f8daecadc9ce4fb5d799addf4d42d, type: 3}
+      propertyPath: shootPoint
+      value: 
+      objectReference: {fileID: 573870150}
     - target: {fileID: 4230570248647883933, guid: 265f8daecadc9ce4fb5d799addf4d42d, type: 3}
       propertyPath: effectSmoke
       value: 
@@ -22886,6 +22899,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 288797126}
     - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
+      propertyPath: boquilla
+      value: 
+      objectReference: {fileID: 345300790}
+    - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
       propertyPath: cartridge
       value: 
       objectReference: {fileID: 8176179605927935076, guid: 603b9bb6ea8cdd0488e7787d1d8cb4cf, type: 3}
@@ -22897,6 +22914,10 @@ PrefabInstance:
       propertyPath: bulletHole
       value: 
       objectReference: {fileID: 2837622195604789724, guid: ed7b83d06833e884cb7a370a71c3efe6, type: 3}
+    - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
+      propertyPath: shootPoint
+      value: 
+      objectReference: {fileID: 573870150}
     - target: {fileID: 7317460804816819299, guid: 7bd3b8458dad04b47a7ea344b6833aa9, type: 3}
       propertyPath: effectSmoke
       value: 
