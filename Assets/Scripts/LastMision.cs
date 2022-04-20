@@ -16,7 +16,6 @@ public class LastMision : MonoBehaviour
     [SerializeField] private GameObject Obituary;
     [SerializeField] private GameObject ActivateMusica;
     [SerializeField] private GameObject ActivateTimer;
-    public PlayerCollision lifeplayer;
     [SerializeField] private GameObject Final;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4,6)] private string[] dialogueLines;
@@ -40,6 +39,7 @@ public class LastMision : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Return)) && (isPlayerInRange))
         {
+            
             if(!DeciditionActivate)
             {
                 if(!didDialogueStart)
@@ -109,13 +109,13 @@ public class LastMision : MonoBehaviour
         keyCard.SetActive(false);
         yield return new WaitForSeconds(activateTime);
         button1.SetActive(true);
-        soundManager.SeleccionAudio(7, 0.2f);
+        soundManager.SeleccionAudio(7, 0.4f);
         yield return new WaitForSeconds(activateTime);
         button2.SetActive(true);
-        soundManager.SeleccionAudio(7, 0.2f);
+        soundManager.SeleccionAudio(7, 0.4f);
         yield return new WaitForSeconds(activateTime);
         button3.SetActive(true);
-        soundManager.SeleccionAudio(7, 0.2f);
+        soundManager.SeleccionAudio(7, 0.4f);
         isPlayerInRange=true;
         
     }
@@ -153,7 +153,7 @@ public class LastMision : MonoBehaviour
         dialoguePanel.SetActive(false);
         DetonaterOneMinute.SetActive(false);
         DetonatorActivate.SetActive(true);
-        soundManager.SeleccionAudio(7, 0.2f);
+        soundManager.SeleccionAudio(7, 0.5f);
         Obituary.SetActive(false);
         yield return new WaitForSeconds(activateTime);
         ActivateMusica.SetActive(true);

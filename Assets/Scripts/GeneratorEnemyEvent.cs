@@ -9,6 +9,7 @@ public class GeneratorEnemyEvent : MonoBehaviour
     [SerializeField] Transform spawnPoint2;
     [SerializeField] Transform spawnPoint3;
     [SerializeField] public float spawnInterval = 8f;
+    [SerializeField] private bool onEvent = false ;
 
     private void Awake()
     {
@@ -28,14 +29,17 @@ public class GeneratorEnemyEvent : MonoBehaviour
     private void SpawnEnemy()
     {
 
-        for (int i = 0; i < 4; i++)
+        if(!onEvent)
+        {
+            for (int i = 0; i < 4; i++)
         {
             float interval= Random.Range(1,spawnInterval);
 
             Invoke("InstantiateEnemy", interval  * 1f);
             Invoke("InstantiateEnemyRun", interval  * 0.8f);
         }
-        gameObject.SetActive(false);
+        onEvent=true;
+        }
 
     }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyRunData
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  speedEnemy: 8
+  speedEnemy: 2
   distancePlayer: 10
   attackPlayer: 1.3
   bitePlayer: 1
