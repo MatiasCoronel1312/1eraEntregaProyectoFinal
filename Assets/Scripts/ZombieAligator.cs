@@ -13,6 +13,7 @@ public class ZombieAligator : MonoBehaviour
     [SerializeField] protected EnemyData enemy;
     [SerializeField] private Animator Zombie;     
     [SerializeField] private GameObject player;
+    [SerializeField] private float maxDistance=90f;// si se aleja mucho o se llega a caer se desactiva
     
 
     
@@ -57,6 +58,11 @@ public class ZombieAligator : MonoBehaviour
             Zombie.SetBool("Attack", true); //activa animacion de ataque 
             Zombie.SetBool("Persecution", false);
 
+        }
+        else if (deltaVector.magnitude >= maxDistance) 
+        {
+            gameObject.SetActive(false);
+            
         }
         else //if ((deltaVector.magnitude <= enemy.distancePlayer)&&(deltaVector.magnitude >= enemy.attackPlayer)) // El enemigo cambia a modo persecucion cuando sea poner la distancia al player pero no tanto, sino lo ataca
         {

@@ -9,6 +9,7 @@ public class PlayerCollision : MonoBehaviour
     public event Action OnDamage;
     public LifePlayer lifeBar;
     public float damageAmount = 2f ;
+    public bool lifeDamage=true;
     [SerializeField] private GameObject wound;
 
     [Header("Audio")]
@@ -54,7 +55,8 @@ public class PlayerCollision : MonoBehaviour
             Destroy(other.gameObject);
             soundManager.SeleccionAudio(7, 0.2f);        }
 
-            if (other.gameObject.CompareTag("Head")||other.gameObject.CompareTag("ArmEnemy")||other.gameObject.CompareTag("ArmEnemyLeft"))
+          if(lifeDamage) {
+                if (other.gameObject.CompareTag("Head")||other.gameObject.CompareTag("ArmEnemy")||other.gameObject.CompareTag("ArmEnemyLeft"))
         {
             GameObject b = GameManager.instancePlayer.RequestBlood();
             b.SetActive(true);
@@ -67,6 +69,7 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("Game Over");
             SceneManager.LoadScene("Nivel1");
             }
+        }
         }
     }
 }

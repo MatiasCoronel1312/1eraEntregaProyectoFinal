@@ -13,13 +13,16 @@ public class LastMision : MonoBehaviour
     [SerializeField] private GameObject button2;
     [SerializeField] private GameObject button3;
     [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private GameObject Obituary;
     [SerializeField] private GameObject ActivateMusica;
     [SerializeField] private GameObject ActivateTimer;
+    public PlayerCollision lifeplayer;
     [SerializeField] private GameObject Final;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4,6)] private string[] dialogueLines;
     [SerializeField] private float typingTime = 0.05f;
     [SerializeField] private float activateTime = 1f;
+    public PlayerCollision lifePlayer;
     private SoundManagerPlayer soundManager;
     private bool isPlayerInRange=false;
     private bool isPlayerToActivate=false;
@@ -145,11 +148,13 @@ public class LastMision : MonoBehaviour
 
     private IEnumerator ActivateBomb()
     {
+        lifePlayer.lifeDamage=false;
         isPlayerInRange=false;
         dialoguePanel.SetActive(false);
         DetonaterOneMinute.SetActive(false);
         DetonatorActivate.SetActive(true);
         soundManager.SeleccionAudio(7, 0.2f);
+        Obituary.SetActive(false);
         yield return new WaitForSeconds(activateTime);
         ActivateMusica.SetActive(true);
         ActivateTimer.SetActive(true);        
@@ -157,7 +162,10 @@ public class LastMision : MonoBehaviour
         ActivateMusica.SetActive(false);
         ActivateTimer.SetActive(false);
         yield return new WaitForSeconds(2f);
-        Final.SetActive(true);        
+        Final.SetActive(true);
+        yield return new WaitForSeconds(51f); 
+        Application.Quit();
+        Debug.Log("Salir");       
         
         
     }

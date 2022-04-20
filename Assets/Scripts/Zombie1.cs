@@ -13,6 +13,7 @@ public class Zombie1 : MonoBehaviour
     [SerializeField] protected EnemyData enemy;
     [SerializeField] private Animator Zombie;     
     [SerializeField] private GameObject player;
+    [SerializeField] private float maxDistance=90f;// si se aleja mucho o se llega a caer se desactiva
 
 
     
@@ -43,6 +44,8 @@ public class Zombie1 : MonoBehaviour
         Vector3 deltaVector = player.transform.position - transform.position;
         Vector3 direction = deltaVector.normalized;
 
+        float random = Random.Range(1f,2f);// Factor random para la velocidad
+
         if (deltaVector.magnitude <= enemy.bitePlayer) 
         {
             Zombie.SetBool("NeckBite", true);
@@ -60,11 +63,16 @@ public class Zombie1 : MonoBehaviour
             Zombie.SetBool("Persecution", false);
             
         }
-        else //if ((deltaVector.magnitude <= enemy.distancePlayer)&&(deltaVector.magnitude >= enemy.attackPlayer)) // El enemigo cambia a modo persecucion cuando sea poner la distancia al player pero no tanto, sino lo ataca
+        else if (deltaVector.magnitude >= maxDistance) 
+        {
+            gameObject.SetActive(false);
+            
+        }
+        else 
         {
             //transform.forward = Vector3.Lerp(transform.forward, direction, enemy.rotationSpeed * Time.deltaTime); // copia su angulo del player
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-            rigidbody.MovePosition(transform.position + direction * enemy.speedEnemy * Time.deltaTime); // y avanza
+            rigidbody.MovePosition(transform.position + direction * enemy.speedEnemy *random* Time.deltaTime); // y avanza
             
             Zombie.SetBool("Persecution", true); //solo activa animacion de persecucion            
             Zombie.SetBool("NeckBite", false);

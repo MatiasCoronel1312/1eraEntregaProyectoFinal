@@ -5,7 +5,9 @@ using UnityEngine;
 public class GeneratorEnemyEvent : MonoBehaviour
 {
     [SerializeField] GameObject zombies;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] Transform spawnPoint1;
+    [SerializeField] Transform spawnPoint2;
+    [SerializeField] Transform spawnPoint3;
     [SerializeField] public float spawnInterval = 8f;
 
     private void Awake()
@@ -26,10 +28,12 @@ public class GeneratorEnemyEvent : MonoBehaviour
     private void SpawnEnemy()
     {
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 4; i++)
         {
+            float interval= Random.Range(1,spawnInterval);
 
-            Invoke("InstantiateEnemy", spawnInterval * 1f);
+            Invoke("InstantiateEnemy", interval  * 1f);
+            Invoke("InstantiateEnemyRun", interval  * 0.8f);
         }
         gameObject.SetActive(false);
 
@@ -38,6 +42,16 @@ public class GeneratorEnemyEvent : MonoBehaviour
 
     private void InstantiateEnemy()
     {
-        Instantiate(zombies, spawnPoint.transform.position, zombies.transform.rotation);
+            GameObject d = GameManager.instancePlayer.RequestEnemy();
+            d.SetActive(true);
+            d.transform.position = spawnPoint1.transform.position;
+            d.transform.rotation = spawnPoint1.transform.rotation;
+    }
+        private void InstantiateEnemyRun()
+    {
+            GameObject d = GameManager.instancePlayer.RequestEnemyRun();
+            d.SetActive(true);
+            d.transform.position = spawnPoint2.transform.position;
+            d.transform.rotation = spawnPoint2.transform.rotation;
     }
 }

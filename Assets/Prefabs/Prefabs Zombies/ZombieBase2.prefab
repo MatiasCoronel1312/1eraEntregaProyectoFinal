@@ -995,9 +995,6 @@ MonoBehaviour:
   LifeEnemy: 3
   LifeArmL: 3
   LifeArmR: 3
-  haveArm: 1
-  haveArmR: 1
-  haveArmL: 1
   Zombie: {fileID: 4694660394042970631}
   head: {fileID: 1471994384439602450}
   neck: {fileID: 8833404821856449063}
@@ -1109,9 +1106,7 @@ MonoBehaviour:
   enemy: {fileID: 11400000, guid: a0f4b480522cbea44bed6ebc5182d579, type: 2}
   Zombie: {fileID: 4694660394042970631}
   player: {fileID: 0}
-  colliderAttack: {fileID: 0}
-  colliderBite: {fileID: 6768068592782044319}
-  enemyCollision: {fileID: 4844024658722078411}
+  maxDistance: 90
 --- !u!136 &7653254949859158683
 CapsuleCollider:
   m_ObjectHideFlags: 0
