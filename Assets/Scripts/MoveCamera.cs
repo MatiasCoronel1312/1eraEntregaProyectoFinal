@@ -2,60 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+public class MoveCamera : MonoBehaviour//un pequeño efecto de carama al disparar o al recibir daño
 {
-   
+
     [SerializeField] public float timeEffect = 0.05f;
-    [SerializeField] public int attackEffect= 3;
-    private Vector3 direction = new Vector3(0, 0, 1);
-     [SerializeField] float speed = 2f;
+    [SerializeField] public int attackEffect = 3;
+    private Vector3 direction = new Vector3(0, 0, 2);
+    [SerializeField] float speed = 2f;
     private bool isRunMove = false;
     public GunController gunController;
     public ShotgunController shotgunController;
 
     private void Awake()
     {
-         gunController.OnFlash += OnFlashEvent;
-         shotgunController.OnFlash += OnFlashEvent;
-         FindObjectOfType<PlayerCollision>().OnDamage += OnDamageEvent;
-         
+        gunController.OnFlash += OnFlashEvent;
+        shotgunController.OnFlash += OnFlashEvent;
+        FindObjectOfType<PlayerCollision>().OnDamage += OnDamageEvent;
+
     }
-    
+
     void Update()
     {
 
     }
 
-     IEnumerator Flash()
+    IEnumerator Flash()
     {
-       isRunMove = true;
-        
+        isRunMove = true;
+
         transform.Translate(speed * Time.deltaTime * direction);
-         yield return new WaitForSeconds(timeEffect); 
+        yield return new WaitForSeconds(timeEffect);
 
         transform.Translate(speed * Time.deltaTime * -direction);
-       isRunMove = false;
+        isRunMove = false;
     }
 
     public void OnFlashEvent()
     {
-       
+
         if (!isRunMove)
         {
             StartCoroutine(Flash());
         }
     }
 
-        IEnumerator Damage()
+    IEnumerator Damage()
     {
-       isRunMove = true;
-        for( int i = 0; i < attackEffect ; i++)
-    {    transform.Translate(speed * Time.deltaTime * direction);
-         yield return new WaitForSeconds(timeEffect); 
-        transform.Translate(speed * Time.deltaTime * -direction);
-        yield return new WaitForSeconds(timeEffect);
-         }
-       isRunMove = false;
+        isRunMove = true;
+        for (int i = 0; i < attackEffect; i++)
+        {
+            transform.Translate(speed * Time.deltaTime * direction);
+            yield return new WaitForSeconds(timeEffect);
+            transform.Translate(speed * Time.deltaTime * -direction);
+            yield return new WaitForSeconds(timeEffect);
+        }
+        isRunMove = false;
     }
 
     public void OnDamageEvent()

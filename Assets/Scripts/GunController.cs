@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class GunController : PlayerWeaponController
 {
-    
-    
+
+
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform boquilla;
 
@@ -18,8 +18,8 @@ public class GunController : PlayerWeaponController
     [Header("Animacion")]
     [SerializeField] private Animator PlayerShooter;
     [SerializeField] GameObject mira;
-    
-    
+
+
 
 
 
@@ -34,28 +34,28 @@ public class GunController : PlayerWeaponController
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManagerPlayer>();
-        
+
 
     }
     void Start()
     {
-        
-        
+
+
 
     }
     protected override void Fire()
 
     {
-        if ((canShoot) && (GameManager.InstanceAmmoGun.gunChargerAmmo > 0))
+        if ((canShoot) && (GameManager.InstanceAmmoGun.gunChargerAmmo > 0))//las balas tiene que ser mayor a cero para poder disparar
         {
-            OnFlash?.Invoke();
+            OnFlash?.Invoke();// postprocess de flash de luz
             GameManager.InstanceAmmoGun.gunChargerAmmo--;
             PlayerShooter.SetBool("FireGun", true);
             soundManager.SeleccionAudio(0, 0.5f);
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, rangoFire, hittabletLayers))
             {
-                if (hit.collider.transform.gameObject.CompareTag("Plataforma"))
+                if (hit.collider.transform.gameObject.CompareTag("Plataforma"))//si esta tocando la plataforma instancia un bulletHole y un humito
                 {
                     //
                     GameObject a = GameManager.instancePlayer.RequestSmoke();
@@ -65,41 +65,45 @@ public class GunController : PlayerWeaponController
                     //
                     GameObject b = GameManager.instancePlayer.RequestBulletHole();
                     b.SetActive(true);
-                    b.transform.position = hit.point+hit.normal*0.001f;
+                    b.transform.position = hit.point + hit.normal * 0.001f;
                     b.transform.rotation = Quaternion.LookRotation(hit.normal);
                 }
-                
-                
-                if(hit.collider.transform.gameObject.CompareTag("Head")){
+                // si el raycast hace contacto con el enemigo llama a la funcion respectivamente
+
+                if (hit.collider.transform.gameObject.CompareTag("Head"))
+                {
                     hit.collider.transform.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactGunHead();
                 }
-                if(hit.collider.transform.gameObject.CompareTag("BodyEnemy")){
-                    
+                if (hit.collider.transform.gameObject.CompareTag("BodyEnemy"))
+                {
+
                     hit.collider.transform.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactGun();
                 }
-                if(hit.collider.transform.gameObject.CompareTag("ArmEnemy")){
+                if (hit.collider.transform.gameObject.CompareTag("ArmEnemy"))
+                {
                     hit.collider.transform.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmRGun();
                 }
-                if(hit.collider.transform.gameObject.CompareTag( "ArmEnemyLeft")){
+                if (hit.collider.transform.gameObject.CompareTag("ArmEnemyLeft"))
+                {
                     hit.collider.transform.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<EnemyCollision>().BulletImpactArmLGun();
                 }
-                
+
             }
             //
-            GameObject d = GameManager.instancePlayer.RequestFlash();
+            GameObject d = GameManager.instancePlayer.RequestFlash();//esto es el fogonazo
             d.SetActive(true);
             d.transform.position = boquilla.transform.position;
             d.transform.rotation = boquilla.transform.rotation;
             //
-            GameObject c = GameManager.instancePlayer.RequestCartridge();
+            GameObject c = GameManager.instancePlayer.RequestCartridge();//y el cartucho que sale con impulso
             c.SetActive(true);
-            c.transform.position = Recamara.transform.position; 
+            c.transform.position = Recamara.transform.position;
             c.GetComponent<Rigidbody>().AddForce(Recamara.transform.TransformDirection(Vector3.up) * 0.8f, ForceMode.Impulse);
-                        
-                    
-                    
-                            
-            
+
+
+
+
+
 
             canShoot = false;
             timeShoot = 0;
@@ -141,18 +145,21 @@ public class GunController : PlayerWeaponController
 
     protected override void Reload()
     {
-        if(( GameManager.InstanceAmmoGun.gunAmmo > 0 ) && ( GameManager.InstanceAmmoGun.gunChargerAmmo < 17 ))
+        if ((GameManager.InstanceAmmoGun.gunAmmo > 0) && (GameManager.InstanceAmmoGun.gunChargerAmmo < 17))//al recargar pregunto si el cargador tiene menor de 17balas y si quedan balas del total
         {
             //Debug.Log("anda!");
             PlayerShooter.SetBool("Reload", true);
             soundManager.SeleccionAudio(1, 0.5f);
-            placeCharger = 17 - GameManager.InstanceAmmoGun.gunChargerAmmo;
-            if(GameManager.InstanceAmmoGun.gunAmmo>placeCharger){
-                GameManager.InstanceAmmoGun.gunAmmo-=placeCharger;
-                GameManager.InstanceAmmoGun.gunChargerAmmo+=placeCharger;
-            }else{
-                GameManager.InstanceAmmoGun.gunChargerAmmo+=GameManager.InstanceAmmoGun.gunAmmo;
-                GameManager.InstanceAmmoGun.gunAmmo=0;
+            placeCharger = 17 - GameManager.InstanceAmmoGun.gunChargerAmmo;//calculo cuantas balas necesito recargar o sea cuanto espacio en el cargador hay 
+            if (GameManager.InstanceAmmoGun.gunAmmo > placeCharger)//si del total es mayor a lo que necesito
+            {
+                GameManager.InstanceAmmoGun.gunAmmo -= placeCharger;//entonces directamente le resto lo que neccesito
+                GameManager.InstanceAmmoGun.gunChargerAmmo += placeCharger;//y se lo sumo al cargador
+            }
+            else
+            {
+                GameManager.InstanceAmmoGun.gunChargerAmmo += GameManager.InstanceAmmoGun.gunAmmo;// si no me alcanza le sumo directamente todo lo que quede
+                GameManager.InstanceAmmoGun.gunAmmo = 0;
             }
 
         }
@@ -167,9 +174,9 @@ public class GunController : PlayerWeaponController
 
     }
 
-    
 
-    
+
+
 
 
     private void OnDrawGizmos()

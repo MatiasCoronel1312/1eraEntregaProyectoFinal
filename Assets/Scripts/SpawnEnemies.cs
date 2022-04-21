@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SpawnEnemies : MonoBehaviour
+public class SpawnEnemies : MonoBehaviour//script para spawnear enemigos, desde cualquier checkpoint  se agrega el spawnpoint el tipo de nemy y la cantidad
 {
 
     [SerializeField] Transform spawnPoint;
     private bool spawnEnemy = true;
 
-    [SerializeField] private float timeSpawn;
+    [SerializeField] private float timeSpawn;//y el tiempo de spawneo
     [SerializeField] private int enemies;
     
 private void OnTriggerExit(Collider other) {

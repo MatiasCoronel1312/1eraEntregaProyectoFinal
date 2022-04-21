@@ -5,13 +5,13 @@ using UnityEngine.Playables;
 public class DoorsEvent : MonoBehaviour
 {
     public GameObject Puertas;
-    // Start is called before the first frame update
+    
     private void Awake()
     {
-        FindObjectOfType<EventManager>().OnEvent += Play;
+        FindObjectOfType<EventManager>().OnEvent += Play;// este es para activar una timeline llamada por un event
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -19,7 +19,7 @@ public class DoorsEvent : MonoBehaviour
 
     public void Play()
     {
-        PlayableDirector pd = Puertas.GetComponent<PlayableDirector>();
+        PlayableDirector pd = Puertas.GetComponent<PlayableDirector>();// solo es para abrir las puertas del hangar
         pd.Play();
     }
 }

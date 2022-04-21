@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmmoShotgunCharger : MonoBehaviour
+public class AmmoShotgunCharger : MonoBehaviour//script para el panel que marca la cantidad de balas en el cargador de la escopeta
 {
     public Text ammoSGText;
-    // Start is called before the first frame update
+
     void Update()
     {
         AmmoShotgun();

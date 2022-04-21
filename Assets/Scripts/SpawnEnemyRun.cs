@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemyRun : MonoBehaviour
+public class SpawnEnemyRun : MonoBehaviour// script que controla el spawn de enemy run, se llama a un pool en un singleton
 {
 
     [SerializeField] Transform spawnPoint;

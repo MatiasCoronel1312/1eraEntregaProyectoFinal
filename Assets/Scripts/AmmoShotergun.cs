@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmmoShotergun : MonoBehaviour
+public class AmmoShotergun : MonoBehaviour//script para el panel que marca la cantidad de balas total de la escopeta
 {
     public Text ammoSGText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         AmmoShotgun();

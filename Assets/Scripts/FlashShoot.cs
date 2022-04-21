@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-public class FlashShoot : MonoBehaviour
+public class FlashShoot : MonoBehaviour//script que controla el efecto de flash al disparar conjuntamente con el fogonazo (particulas) y e la llama con un event , tambien uso un a corrutina para controlar la duracion del efecto 
 {
     private PostProcessVolume globalVolume;
     private Bloom flashEffect;

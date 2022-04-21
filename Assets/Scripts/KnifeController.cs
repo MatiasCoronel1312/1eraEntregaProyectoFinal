@@ -7,7 +7,7 @@ public class KnifeController : PlayerWeaponController
 
     [Header("Animacion")]
     [SerializeField] private Animator PlayerKnife;
-    //[SerializeField] GameObject playerKnife;
+    
     [SerializeField] Collider colliderKnife;    
 
     [Header("Audio")]
@@ -19,7 +19,7 @@ public class KnifeController : PlayerWeaponController
     {
         soundManager = FindObjectOfType<SoundManagerPlayer>();
         
-        //collider = playerKnife.GetComponent<Collider>();
+        
     }
     void Start()
     {
@@ -32,7 +32,7 @@ public class KnifeController : PlayerWeaponController
         {
             PlayerKnife.SetBool("KnifeAttack", true);
             soundManager.SeleccionAudio(5, 0.5f);
-            colliderKnife.enabled=true;
+            colliderKnife.enabled=true;//activo y desactivo el collider solo en el momento del ataque, para que pueda herir al enemigo solo cuando se lo ataca
             canShoot = false;
             timeShoot = 0;
         }
@@ -67,14 +67,7 @@ public class KnifeController : PlayerWeaponController
 
 
 
-    // protected override void Reload()
-    // {
-    //     PlayerKnife.SetBool("ReloadShotgun", true);
-    // }
-    // protected override void UndoReload()
-    // {
-    //     PlayerKnife.SetBool("ReloadShotgun", false);
-    // }
+
 
 
 

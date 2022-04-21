@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmmoGuns : MonoBehaviour
+public class AmmoGuns : MonoBehaviour//script para el panel que marca la cantidad de balas total de la pistola
 {
     public Text ammoText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         AmmoGun();

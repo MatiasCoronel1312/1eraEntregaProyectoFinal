@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainController : MonoBehaviour
+public class MainController : MonoBehaviour//es un timer para retrasar un poquito el inicio del nivel y le de tiempo al timeline 
 {
     public float Timer = 0f;
     public bool play = false;
@@ -20,7 +20,7 @@ public class MainController : MonoBehaviour
     {
         if (play == true)
         {
-          Timer += Time.deltaTime;
+            Timer += Time.deltaTime;
         }
         IniciarNivel();
 
